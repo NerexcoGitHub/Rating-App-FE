@@ -58,39 +58,39 @@ const NavSidebar = ({ openSidebar = false, closeNavSidebar, navSetup, changeThem
                         ))
                     }
                     {
-                        env === 'development' ?
-                            <>
-                                <hr />
-                                <Text subtitle className='mt-3 !text-[18px]'>Examples and tutorials</Text>
-                                <LinkTo href='/pages/tutorial/all-components.tsx' passHref className='text-[16px] block my-3'>
-                                    All Components
-                                </LinkTo>
-                                <LinkTo href='/pages/tutorial/style-guide.tsx' passHref className='text-[16px] block my-3'>
-                                    Style Guide
-                                </LinkTo>
-                                <LinkTo href='/pages/tutorial/home-layout.tsx' passHref className='text-[16px] block my-3'>
-                                    Home Page Layout
-                                </LinkTo>
-                                <LinkTo href='/pages/tutorial/blog-with-sidebar-layout.tsx' passHref className='text-[16px] block my-3'>
-                                    Page Layout for article with sidebar
-                                </LinkTo>
-                                <LinkTo href='/pages/tutorial/blog-with-centered-layout.tsx' passHref className='text-[16px] block my-3'>
-                                    Page Layout for centered article
-                                </LinkTo>
-                                <LinkTo href='/pages/tutorial/how-to-setup-blog.tsx' passHref className='text-[16px] block my-3'>
-                                    How to setup your blog
-                                </LinkTo>
-                                <LinkTo href='/pages/tutorial/how-to-write-your-first-article.tsx' passHref className='text-[16px] block my-3'>
-                                    How to write your first article
-                                </LinkTo>
-                                <LinkTo href='/pages/tutorial/how-to-deploy-blog.tsx' passHref className='text-[16px] block my-3'>
-                                    How to export the blog
-                                </LinkTo>
-                                <LinkTo href='/pages/tutorial/icons.tsx' passHref className='text-[16px] block my-3'>
-                                    Icons
-                                </LinkTo>
-                            </>
-                            : null
+                        // env === 'development' ?
+                        //     <>
+                        //         <hr />
+                        //         <Text subtitle className='mt-3 !text-[18px]'>Examples and tutorials</Text>
+                        //         <LinkTo href='/pages/tutorial/all-components.tsx' passHref className='text-[16px] block my-3'>
+                        //             All Components
+                        //         </LinkTo>
+                        //         <LinkTo href='/pages/tutorial/style-guide.tsx' passHref className='text-[16px] block my-3'>
+                        //             Style Guide
+                        //         </LinkTo>
+                        //         <LinkTo href='/pages/tutorial/home-layout.tsx' passHref className='text-[16px] block my-3'>
+                        //             Home Page Layout
+                        //         </LinkTo>
+                        //         <LinkTo href='/pages/tutorial/blog-with-sidebar-layout.tsx' passHref className='text-[16px] block my-3'>
+                        //             Page Layout for article with sidebar
+                        //         </LinkTo>
+                        //         <LinkTo href='/pages/tutorial/blog-with-centered-layout.tsx' passHref className='text-[16px] block my-3'>
+                        //             Page Layout for centered article
+                        //         </LinkTo>
+                        //         <LinkTo href='/pages/tutorial/how-to-setup-blog.tsx' passHref className='text-[16px] block my-3'>
+                        //             How to setup your blog
+                        //         </LinkTo>
+                        //         <LinkTo href='/pages/tutorial/how-to-write-your-first-article.tsx' passHref className='text-[16px] block my-3'>
+                        //             How to write your first article
+                        //         </LinkTo>
+                        //         <LinkTo href='/pages/tutorial/how-to-deploy-blog.tsx' passHref className='text-[16px] block my-3'>
+                        //             How to export the blog
+                        //         </LinkTo>
+                        //         <LinkTo href='/pages/tutorial/icons.tsx' passHref className='text-[16px] block my-3'>
+                        //             Icons
+                        //         </LinkTo>
+                        //     </>
+                        //     : null
                     }
 
                 </div>
@@ -107,24 +107,9 @@ const NavSidebar = ({ openSidebar = false, closeNavSidebar, navSetup, changeThem
                         </>
                     }
                 </div>
-                <div className='mt-5 mb-4'>
-                    <p className='mb-2 font-light'>Switch To {theme === THEMES.LIGHT ? 'Dark' : 'Light'} Theme :</p>
-                    <button name="theme-switch" aria-label="theme-switch" className={combineClasses(classes.theme_switch, 'dark:text-white text-black')} onClick={() => changeTheme()}>
-                    {
-                            theme === THEMES.DARK ? <BsFillSunFill className="text-2xl" /> : <BsFillMoonFill className="text-lg" />
-                        }
-                    </button>
-                </div>
-                <hr />
-                <div className='my-5'>
-                    <p className='text-sm font-light dark:text-gray-400 text-gray-500 mb-1'>Copyright © 2022</p>
-                    <LinkTo href="/privacy-policy" passHref className='text-sm font-light dark:text-gray-400 text-gray-500 pr-3'>
-                        Privacy Policy
-                    </LinkTo>
-                    <LinkTo href="/terms-and-condition" passHref className='text-sm font-light dark:text-gray-400 text-gray-500'>
-                        Terms and Conditions
-                    </LinkTo>
-                </div>
+            
+              
+             
             </aside>
         </>
     )

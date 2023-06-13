@@ -85,27 +85,27 @@ export const PRIMARY_NAV: iNavSetup = {
             label: 'Home',
             path: '/'
         },
-        {
-            // for categories don't add path and add type: dropdown and pass path empty
-            label: 'Blog',
-            type: 'dropdown',
-            path: ''
-        },
+        // {
+        //     // for categories don't add path and add type: dropdown and pass path empty
+        //     label: 'Blog',
+        //     type: 'dropdown',
+        //     path: ''
+        // },
         {
             label: 'About Us',
             path: '/about-us'
         },
-        {
-            // to open a link in new tab pass newTab: true
-            label: 'Support Us',
-            path: 'https://www.buymeacoffee.com/webexpe13z',
-            newTab: true
-        },
-        {
-            label: 'Github Repo',
-            path: 'https://github.com/webexpe13/blog-template-using-nextjs-typescript-tailwindcss',
-            newTab: true
-        },
+        // {
+        //     // to open a link in new tab pass newTab: true
+        //     label: 'Support Us',
+        //     path: 'https://www.buymeacoffee.com/webexpe13z',
+        //     newTab: true
+        // },
+        // {
+        //     label: 'Github Repo',
+        //     path: 'https://github.com/webexpe13/blog-template-using-nextjs-typescript-tailwindcss',
+        //     newTab: true
+        // },
         {
             label: 'Contact Us',
             path: '/contact-us'
@@ -117,45 +117,45 @@ export const PRIMARY_NAV: iNavSetup = {
             label: 'Home',
             path: '/'
         },
-        {
-            // for categories dont add path and add type: dropdown
-            label: 'Blog',
-            type: 'dropdown',
-            path: ''
-        },
+        // {
+        //     // for categories dont add path and add type: dropdown
+        //     label: 'Blog',
+        //     type: 'dropdown',
+        //     path: ''
+        // },
         {
             label: 'About Us',
             path: '/about-us'
         },
-        {
-            label: 'Support Us',
-            path: 'https://www.buymeacoffee.com/webexpe13z',
-            newTab: true
-        },
-        {
-            label: 'Github Repo',
-            path: 'https://github.com/webexpe13/blog-template-using-nextjs-typescript-tailwindcss',
-            newTab: true
-        },
+        // {
+        //     label: 'Support Us',
+        //     path: 'https://www.buymeacoffee.com/webexpe13z',
+        //     newTab: true
+        // },
+        // {
+        //     label: 'Github Repo',
+        //     path: 'https://github.com/webexpe13/blog-template-using-nextjs-typescript-tailwindcss',
+        //     newTab: true
+        // },
         {
             label: 'Contact Us',
             path: '/contact-us'
         }
     ],
-    socials: [
-        {
-            link: 'https://www.facebook.com/',
-            icon: <AiFillFacebook />
-        },
-        {
-            link: 'https://www.instagram.com/',
-            icon: <AiFillInstagram />
-        },
-        {
-            link: 'https://twitter.com/WebExpe',
-            icon: <AiOutlineTwitter />
-        },
-    ]
+    // socials: [
+    //     {
+    //         link: 'https://www.facebook.com/',
+    //         icon: <AiFillFacebook />
+    //     },
+    //     {
+    //         link: 'https://www.instagram.com/',
+    //         icon: <AiFillInstagram />
+    //     },
+    //     {
+    //         link: 'https://twitter.com/WebExpe',
+    //         icon: <AiOutlineTwitter />
+    //     },
+    // ]
 }
 
 export const DEFAULT_SEO: iSEO = {
