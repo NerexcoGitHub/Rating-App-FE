@@ -10,6 +10,8 @@ import Avatar from "../Misc/Avatar";
 import ArticleCardCategory from "../Misc/ArticleCardCategory";
 import ArticleTags from "../Misc/ArticleTags";
 import Image from "next/image";
+import ArticleRating from "../Misc/ArticeRating";
+import RatingModel from "../Rating";
 
 interface IProp {
   article: IArticleHeaderData;
@@ -29,9 +31,7 @@ const ArticleCard = ({ article, path }: IProp) => {
 
   return (
     <div className={"w-full lg:w-1/3 md:w-1/2 md:px-[15px] px-2 mb-[30px]"}>
-      <LinkTo
-        href={transformPath(path)}
-        passHref
+      <div
         className={combineClasses(
           classes.article_card,
           "border-b-[5px] border-blue-500 dark:bg-slate-800 dark:text-white dark:drop-shadow-lg flex flex-col justify-between"
@@ -53,15 +53,15 @@ const ArticleCard = ({ article, path }: IProp) => {
             <p className={"font-normal text-xs pt-3 mb-0 md:mb-3"}>
               {article.date}
             </p>
-            <LinkTo href={transformPath(path)} passHref>
-              <h1
-                className={
-                  "text-[22px] font-bold cursor-pointer tracking-wide hover:text-blue-600"
-                }
-              >
-                {article.articleTitle}
-              </h1>
-            </LinkTo>
+
+            <h1
+              className={
+                "text-[22px] font-bold cursor-pointer tracking-wide hover:text-blue-600"
+              }
+            >
+              {article.articleTitle}
+            </h1>
+
             <p
               className={combineClasses(
                 classes.article_card__intro,
@@ -70,9 +70,10 @@ const ArticleCard = ({ article, path }: IProp) => {
             >
               {article.shortIntro.slice(0, 100)} ...
             </p>
-            <ArticleTags tags={article.tags} />
+            {/* <ArticleTags tags={article.tags} /> */}
           </div>
         </div>
+        <ArticleRating />
         <div
           className={combineClasses(
             classes.article_card_footer,
@@ -98,9 +99,18 @@ const ArticleCard = ({ article, path }: IProp) => {
               {article.author.name}
             </p> */}
           </div>
-          <ArticleCardCategory category={article.category} />
+          <button
+            data-modal-target="defaultModal"
+            data-modal-toggle="defaultModal"
+            type="button"
+            className="bg-orange-500 hover:bg-orange-700 text-white text-sm font-500 py-2 px-4  ml-6"
+          >
+            Rate Prompt
+          </button>
+
         </div>
-      </LinkTo>
+      </div>
+      <RatingModel />
     </div>
   );
 };

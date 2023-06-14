@@ -40,7 +40,7 @@ const ARTICLES_LIST: iArticle[] = [
       date: "August 08 2022",
       articleTitle: "How to setup this blog template",
       tags: "demo, blog setup",
-      thumbnail: "/public/imp_assets/tutorials/how-to-setup-blog.svg",
+      thumbnail: "/public/assets/Illustration3.png",
       shortIntro: "These are the steps to setup your blog",
       category: "tutorial",
     },
@@ -48,65 +48,72 @@ const ARTICLES_LIST: iArticle[] = [
       title: "How to setup this blog template",
       description: "These are the steps to setup your blog",
       keywords: "demo, blog setup",
-      ogImage: "/public/imp_assets/tutorials/how-to-setup-blog.svg",
+      ogImage: "/public/assets/Illustration3.png",
       twitterHandle: "@mayur_nalwala",
       author: MAYUR.name,
     },
   },
   {
-    path: "/pages/tutorial/how-to-write-your-first-article.tsx",
+    path: "/pages/tutorial/how-to-setup-blog.tsx",
     featureArticle: true,
     preview: {
-      author: RUPALI,
+      author: MAYUR,
       date: "August 08 2022",
-      articleTitle: "How to write your first article",
-      tags: "demo, first article",
-      thumbnail: "/public/imp_assets/tutorials/how-to-write-first-article.svg",
-      shortIntro:
-        "This a step by step guide on how to write your first article.",
+      articleTitle: "How to setup this blog template",
+      tags: "demo, blog setup",
+      thumbnail: "/public/assets/Illustration3.png",
+      shortIntro: "These are the steps to setup your blog",
       category: "tutorial",
     },
     seo: {
-      keywords:
-        "demo, centered, centered layout, blog page layout, blog page design with centered layout, writing first article, webexpe, webexpe.com",
-      ogImage: "/public/imp_assets/tutorials/how-to-write-first-article.svg",
+      title: "How to setup this blog template",
+      description: "These are the steps to setup your blog",
+      keywords: "demo, blog setup",
+      ogImage: "/public/assets/Illustration3.png",
+      twitterHandle: "@mayur_nalwala",
+      author: MAYUR.name,
     },
   },
   {
-    path: "/pages/tutorial/how-to-deploy-blog.tsx",
+    path: "/pages/tutorial/how-to-setup-blog.tsx",
     featureArticle: true,
     preview: {
-      author: RUPALI,
+      author: MAYUR,
       date: "August 08 2022",
-      articleTitle: "How to Export and deploy on firebase",
-      tags: "demo, deploy blog",
-      thumbnail: "/public/imp_assets/tutorials/how-to-deploy.svg",
-      shortIntro:
-        "In this article you will see how to export blog files and what folder to deploy on your hosting.",
+      articleTitle: "How to setup this blog template",
+      tags: "demo, blog setup",
+      thumbnail: "/public/assets/Illustration3.png",
+      shortIntro: "These are the steps to setup your blog",
       category: "tutorial",
     },
     seo: {
-      ogImage: "/public/imp_assets/tutorials/how-to-deploy.svg",
+      title: "How to setup this blog template",
+      description: "These are the steps to setup your blog",
+      keywords: "demo, blog setup",
+      ogImage: "/public/assets/Illustration3.png",
+      twitterHandle: "@mayur_nalwala",
+      author: MAYUR.name,
     },
   },
   {
-    path: "/pages/tutorial/home-layout.tsx",
+    path: "/pages/tutorial/how-to-setup-blog.tsx",
+    featureArticle: true,
     preview: {
-      author: RUPALI,
-      date: "August 14 2022",
-      articleTitle: "Home Layout Example",
-      tags: "demo, layout, home layout",
-      thumbnail: "/public/imp_assets/tutorials/home-layouts.svg",
-      shortIntro: "In this article we will see Default Home Layout example.",
-      category: "layouts",
+      author: MAYUR,
+      date: "August 08 2022",
+      articleTitle: "How to setup this blog template",
+      tags: "demo, blog setup",
+      thumbnail: "/public/assets/Illustration3.png",
+      shortIntro: "These are the steps to setup your blog",
+      category: "tutorial",
     },
     seo: {
-      title: "Home Layout Example",
-      description: "In this article we will see Default Home Layout example.",
-      keywords:
-        "next js, tailwind css, typescript, blog template, default layout, default home layout",
-      ogImage: "/public/imp_assets/tutorials/home-layouts.svg",
-      author: RUPALI.name,
+      title: "How to setup this blog template",
+      description: "These are the steps to setup your blog",
+      keywords: "demo, blog setup",
+      ogImage: "/public/assets/Illustration3.png",
+      twitterHandle: "@mayur_nalwala",
+      author: MAYUR.name,
     },
   },
   {
@@ -114,9 +121,9 @@ const ARTICLES_LIST: iArticle[] = [
     preview: {
       author: MAYUR,
       date: "August 14 2022",
-      articleTitle: "Page Layout for a article with sidebar",
+      articleTitle: "centered layout, blog page layout,",
       tags: "demo, with sidebar, default layout",
-      thumbnail: "/public/imp_assets/tutorials/blog-with-sidebar-layout.svg",
+      thumbnail: "/public/assets/Illustration3.png",
       shortIntro:
         "In this article we will see Page Layout for a blog with sidebar example.",
       category: "layouts",
@@ -132,9 +139,9 @@ const ARTICLES_LIST: iArticle[] = [
     preview: {
       author: RUPALI,
       date: "August 14 2022",
-      articleTitle: "Page Layout for a article with centered layout",
+      articleTitle: "Lorem Ipsum is simply dummy",
       tags: "demo, centered, centered layout",
-      thumbnail: "/public/imp_assets/tutorials/blog-with-centered-layout.svg",
+      thumbnail: "/public/assets/Illustration3.png",
       shortIntro:
         "This a demo article with centered layout and with demo of all the components.",
       category: "layouts",
@@ -150,9 +157,9 @@ const ARTICLES_LIST: iArticle[] = [
     preview: {
       author: RUPALI,
       date: "August 08 2022",
-      articleTitle: "All Components",
+      articleTitle: "centered layout, blog page layout,",
       tags: "demo, all components",
-      thumbnail: "/public/imp_assets/tutorials/all-components.svg",
+      thumbnail: "/public/assets/Illustration3.png",
       shortIntro: "List of all usable components, its types and how to use it.",
       category: "tutorial",
     },
@@ -161,58 +168,8 @@ const ARTICLES_LIST: iArticle[] = [
       ogImage: "/public/imp_assets/tutorials/all-components.svg",
     },
   },
-  {
-    path: "/pages/tutorial/style-guide.tsx",
-    preview: {
-      author: MAYUR,
-      date: "August 10 2022",
-      articleTitle: "Style Guide",
-      tags: "demo, all components, style guide, styling tutorial",
-      thumbnail: "/public/imp_assets/tutorials/style-guide.svg",
-      shortIntro: "Styling and theming tutorial.",
-      category: "tutorial",
-    },
-    seo: {
-      keywords:
-        "demo, all components, style guide, styling, css, tailwind css, tailwind, webexpe, webexpe.com",
-      ogImage: "/public/imp_assets/tutorials/style-guide.svg",
-    },
-  },
-  {
-    path: "/pages/tutorial/icons.tsx",
-    preview: {
-      author: MAYUR,
-      date: "August 13 2022",
-      articleTitle: "How to use icons",
-      tags: "demo, all components, style guide, styling tutorial, icons, how to use icons in website",
-      thumbnail: "/public/imp_assets/tutorials/how-to-use-icons.svg",
-      shortIntro: "How to use icons in your blog website.",
-      category: "tutorial",
-    },
-    seo: {
-      keywords:
-        "demo, all components, style guide, styling, css, tailwind css, tailwind, webexpe, webexpe.com, styling tutorial, icons, how to use icons in website",
-      ogImage: "/public/imp_assets/tutorials/how-to-use-icons.svg",
-    },
-  },
-  {
-    path: "/pages/blog/your-first-article.tsx",
-    preview: {
-      author: MAYUR,
-      date: "August 6 2022",
-      articleTitle: "Your first article",
-      shortIntro:
-        "This is a demo file for your first article, you can copy structure of this file to create multile article.",
-      tags: "demo, your first article",
-      thumbnail: "/public/imp_assets/tutorials/how-to-write-first-article.svg",
-      category: "tutorial",
-    },
-    seo: {
-      keywords:
-        "demo, all components, style guide, styling, css, tailwind css, tailwind, webexpe, webexpe.com, styling tutorial, icons, how to use icons in website",
-      ogImage: "/public/imp_assets/tutorials/how-to-write-first-article.svg",
-    },
-  },
+
+ 
 ];
 
 export const SORTED_ARTICLES_BY_DATE = ARTICLES_LIST.sort((a, b) =>
