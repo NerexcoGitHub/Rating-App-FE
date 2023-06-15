@@ -12,6 +12,9 @@ import ArticleTags from "../Misc/ArticleTags";
 import Image from "next/image";
 import ArticleRating from "../Misc/ArticeRating";
 import RatingModel from "../Rating";
+import { useState } from "react";
+import { Modal } from "@mui/material";
+import AdaptationPromptModel from "../adaptationPromptModel";
 
 interface IProp {
   article: IArticleHeaderData;
@@ -19,6 +22,9 @@ interface IProp {
 }
 
 const ArticleCard = ({ article, path }: IProp) => {
+  const [openPromtModel, setOpenPromtModel] = useState(false);
+  const handleOpenPromtModel = () => setOpenPromtModel(!openPromtModel);
+
   // set url and path
   const origin =
     typeof window !== "undefined" && window.location.origin
@@ -30,7 +36,10 @@ const ArticleCard = ({ article, path }: IProp) => {
   };
 
   return (
-    <div className={"w-full lg:w-1/3 md:w-1/2 md:px-[15px] px-2 mb-[30px]"}>
+    <div
+      className={"w-full lg:w-1/3 md:w-1/2 md:px-[15px] px-2 mb-[30px]"}
+      onClick={handleOpenPromtModel}
+    >
       <div
         className={combineClasses(
           classes.article_card,
@@ -38,7 +47,7 @@ const ArticleCard = ({ article, path }: IProp) => {
         )}
       >
         <div>
-          <div className={"rounded-t-[4px] overflow-hidden h-[200px] relative"}>
+          {/* <div className={"rounded-t-[4px] overflow-hidden h-[200px] relative"}>
             <Image
               src={transformImagePaths(article.thumbnail)}
               alt={article.articleTitle}
@@ -47,7 +56,7 @@ const ArticleCard = ({ article, path }: IProp) => {
               objectFit="cover"
               loader={imgLoader}
             />
-          </div>
+          </div> */}
 
           <div className={"d-block px-[15px] py-0"}>
             <p className={"font-normal text-xs pt-3 mb-0 md:mb-3"}>
@@ -70,7 +79,7 @@ const ArticleCard = ({ article, path }: IProp) => {
             >
               {article.shortIntro.slice(0, 100)} ...
             </p>
-            {/* <ArticleTags tags={article.tags} /> */}
+            <ArticleTags tags={article.tags} />
           </div>
         </div>
         <ArticleRating />
@@ -107,10 +116,24 @@ const ArticleCard = ({ article, path }: IProp) => {
           >
             Rate Prompt
           </button>
-
         </div>
       </div>
-      <RatingModel />
+      {/* <Modal
+        open={openRatingModel}
+        onClose={handleCloseRatingModel}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <RatingModel />
+      </Modal> */}
+      <Modal
+        open={openPromtModel}
+        onClose={handleOpenPromtModel}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <AdaptationPromptModel handleClosePromtModel={handleOpenPromtModel} />
+      </Modal>
     </div>
   );
 };
