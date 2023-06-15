@@ -23,7 +23,9 @@ interface IProp {
 
 const ArticleCard = ({ article, path }: IProp) => {
   const [openPromtModel, setOpenPromtModel] = useState(false);
-  const handleOpenPromtModel = () => setOpenPromtModel(!openPromtModel);
+  const handleOpenPromtModel = () =>{ 
+    console.log("open promt model");
+    setOpenPromtModel(!openPromtModel);}
 
   // set url and path
   const origin =
@@ -38,7 +40,7 @@ const ArticleCard = ({ article, path }: IProp) => {
   return (
     <div
       className={"w-full lg:w-1/3 md:w-1/2 md:px-[15px] px-2 mb-[30px]"}
-      onClick={handleOpenPromtModel}
+      
     >
       <div
         className={combineClasses(
@@ -46,7 +48,7 @@ const ArticleCard = ({ article, path }: IProp) => {
           "border-b-[5px] border-blue-500 dark:bg-slate-800 dark:text-white dark:drop-shadow-lg flex flex-col justify-between"
         )}
       >
-        <div>
+        <div onClick={handleOpenPromtModel}>
           {/* <div className={"rounded-t-[4px] overflow-hidden h-[200px] relative"}>
             <Image
               src={transformImagePaths(article.thumbnail)}
@@ -58,7 +60,7 @@ const ArticleCard = ({ article, path }: IProp) => {
             />
           </div> */}
 
-          <div className={"d-block px-[15px] py-0"}>
+          <div  className={"d-block px-[15px] py-0"}>
             <p className={"font-normal text-xs pt-3 mb-0 md:mb-3"}>
               {article.date}
             </p>
