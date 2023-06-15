@@ -43,6 +43,7 @@ const ARTICLES_LIST: iArticle[] = [
       thumbnail: "/public/assets/Illustration3.png",
       shortIntro: "These are the steps to setup your blog",
       category: "tutorial",
+      prompt: "You know your small business. Use prompts to quickly finish everything else…",
     },
     seo: {
       title: "How to setup this blog template",
@@ -64,6 +65,7 @@ const ARTICLES_LIST: iArticle[] = [
       thumbnail: "/public/assets/Illustration3.png",
       shortIntro: "These are the steps to setup your blog",
       category: "tutorial",
+      prompt: "You know your small business. Use prompts to quickly finish everything else…",
     },
     seo: {
       title: "How to setup this blog template",
@@ -85,6 +87,7 @@ const ARTICLES_LIST: iArticle[] = [
       thumbnail: "/public/assets/Illustration3.png",
       shortIntro: "These are the steps to setup your blog",
       category: "tutorial",
+      prompt: "You know your small business. Use prompts to quickly finish everything else…",
     },
     seo: {
       title: "How to setup this blog template",
@@ -106,6 +109,7 @@ const ARTICLES_LIST: iArticle[] = [
       thumbnail: "/public/assets/Illustration3.png",
       shortIntro: "These are the steps to setup your blog",
       category: "tutorial",
+      prompt: "You know your small business. Use prompts to quickly finish everything else…",
     },
     seo: {
       title: "How to setup this blog template",
@@ -127,6 +131,7 @@ const ARTICLES_LIST: iArticle[] = [
       shortIntro:
         "In this article we will see Page Layout for a blog with sidebar example.",
       category: "layouts",
+      prompt: "You know your small business. Use prompts to quickly finish everything else…",
     },
     seo: {
       keywords:
@@ -144,7 +149,7 @@ const ARTICLES_LIST: iArticle[] = [
       thumbnail: "/public/assets/Illustration3.png",
       shortIntro:
         "This a demo article with centered layout and with demo of all the components.",
-      category: "layouts",
+      category: "layouts", prompt: "You know your small business. Use prompts to quickly finish everything else…",
     },
     seo: {
       keywords:
@@ -161,7 +166,7 @@ const ARTICLES_LIST: iArticle[] = [
       tags: "demo, all components",
       thumbnail: "/public/assets/Illustration3.png",
       shortIntro: "List of all usable components, its types and how to use it.",
-      category: "tutorial",
+      category: "tutorial", prompt: "You know your small business. Use prompts to quickly finish everything else…",
     },
     seo: {
       keywords: "demo, all components, webexpe, webexpe.com",

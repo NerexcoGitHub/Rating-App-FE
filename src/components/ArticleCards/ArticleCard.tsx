@@ -67,7 +67,7 @@ const ArticleCard = ({ article, path }: IProp) => {
 
             <h1
               className={
-                "text-[22px] font-bold cursor-pointer tracking-wide hover:text-blue-600"
+                "text-[18px] font-bold cursor-pointer tracking-wide text-blue-600"
               }
             >
               {article.articleTitle}
@@ -81,6 +81,14 @@ const ArticleCard = ({ article, path }: IProp) => {
             >
               {article.shortIntro.slice(0, 100)} ...
             </p>
+            
+            <h1
+              className={
+                "text-[22px] font-bold cursor-pointer tracking-wide "
+              }
+            >
+              {article?.prompt?.slice(0, 100)}
+            </h1>
             <ArticleTags tags={article.tags} />
           </div>
         </div>

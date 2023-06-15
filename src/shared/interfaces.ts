@@ -16,6 +16,7 @@ export interface IArticleHeaderData {
   thumbnail: string;
   shortIntro: string;
   category?: string;
+  prompt?: string;
 }
 
 export interface iArticle {

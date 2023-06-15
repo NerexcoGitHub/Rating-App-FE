@@ -23,12 +23,12 @@ const AddPromt = () => {
         <div className="flex justify-center px-6 my-12">
           <div className="w-full xl:w-3/4 lg:w-11/12 flex">
             <div
-              className="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg bg-[url(https://placekitten.com/1400)] 
-            bg-no-repeat bg-center"
+              className="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg bg-[url(https://firebasestorage.googleapis.com/v0/b/premier-mart-9aa09.appspot.com/o/test.jpg?alt=media&token=42044ce8-0c91-41ea-9887-1d7772bb29ad)] 
+            bg-no-repeat bg-left"
             ></div>
 
             <div className="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
-              <h3 className="pt-4 text-2xl text-center">Create an Account!</h3>
+              <h3 className="pt-4 text-2xl text-center">Create a Prompt!</h3>
               <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
                 <div className="mb-4 md:flex md:justify-between">
                   <div className="mb-4 md:mr-2 md:mb-0">
@@ -36,13 +36,13 @@ const AddPromt = () => {
                       className="block mb-2 text-sm font-bold text-gray-700"
                       htmlFor="firstName"
                     >
-                      First Name
+                      Prompt Title
                     </label>
                     <input
                       className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                      id="firstName"
+                      id="promptTitle"
                       type="text"
-                      placeholder="First Name"
+                      placeholder="Prompt Title"
                     />
                   </div>
                   <div className="md:ml-2">
@@ -50,13 +50,13 @@ const AddPromt = () => {
                       className="block mb-2 text-sm font-bold text-gray-700"
                       htmlFor="lastName"
                     >
-                      Last Name
+                      Author Name
                     </label>
                     <input
                       className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                      id="lastName"
+                      id="AuthorName"
                       type="text"
-                      placeholder="Last Name"
+                      placeholder="Author Name"
                     />
                   </div>
                 </div>
@@ -65,16 +65,44 @@ const AddPromt = () => {
                     className="block mb-2 text-sm font-bold text-gray-700"
                     htmlFor="email"
                   >
-                    Email
+                    Description
                   </label>
                   <input
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    id="email"
-                    type="email"
-                    placeholder="Email"
+                    id="description"
+                    type="text"
+                    placeholder="Description"
                   />
                 </div>
-                <div className="mb-4 md:flex md:justify-between">
+                <div className="mb-4">
+                  <label
+                    className="block mb-2 text-sm font-bold text-gray-700"
+                    htmlFor="keyWords"
+                  >
+                    Key Words
+                  </label>
+                  <input
+                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    id="keyWords"
+                    type="text"
+                    placeholder="Add Key Words comma seperated"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label
+                    className="block mb-2 text-sm font-bold text-gray-700"
+                    htmlFor="prompt"
+                  >
+                    Prompt
+                  </label>
+                  <input
+                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    id="prompt"
+                    type="text"
+                    placeholder="Add your prompt here"
+                  />
+                </div>
+                {/* <div className="mb-4 md:flex md:justify-between">
                   <div className="mb-4 md:mr-2 md:mb-0">
                     <label
                       className="block mb-2 text-sm font-bold text-gray-700"
@@ -106,32 +134,17 @@ const AddPromt = () => {
                       placeholder="******************"
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className="mb-6 text-center">
                   <button
                     className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
                     type="button"
                   >
-                    Register Account
+                    Save Prompt
                   </button>
                 </div>
                 <hr className="mb-6 border-t" />
-                <div className="text-center">
-                  <a
-                    className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-                    href="#"
-                  >
-                    Forgot Password?
-                  </a>
-                </div>
-                <div className="text-center">
-                  <a
-                    className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-                    href="./index.html"
-                  >
-                    Already have an account? Login!
-                  </a>
-                </div>
+              
               </form>
             </div>
           </div>
