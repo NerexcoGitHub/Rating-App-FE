@@ -13,7 +13,7 @@ import Image from "next/image";
 import ArticleRating from "../Misc/ArticeRating";
 import RatingModel from "../Rating";
 import { useState } from "react";
-import { Modal } from "@mui/material";
+import { Modal, Rating } from "@mui/material";
 import AdaptationPromptModel from "../adaptationPromptModel";
 
 interface IProp {
@@ -23,9 +23,10 @@ interface IProp {
 
 const ArticleCard = ({ article, path }: IProp) => {
   const [openPromtModel, setOpenPromtModel] = useState(false);
-  const handleOpenPromtModel = () =>{ 
+  const handleOpenPromtModel = () => {
     console.log("open promt model");
-    setOpenPromtModel(!openPromtModel);}
+    setOpenPromtModel(!openPromtModel);
+  };
 
   // set url and path
   const origin =
@@ -38,10 +39,7 @@ const ArticleCard = ({ article, path }: IProp) => {
   };
 
   return (
-    <div
-      className={"w-full lg:w-1/3 md:w-1/2 md:px-[15px] px-2 mb-[30px]"}
-      
-    >
+    <div className={"w-full lg:w-1/3 md:w-1/2 md:px-[15px] px-2 mb-[30px]"}>
       <div
         className={combineClasses(
           classes.article_card,
@@ -60,7 +58,7 @@ const ArticleCard = ({ article, path }: IProp) => {
             />
           </div> */}
 
-          <div  className={"d-block px-[15px] py-0"}>
+          <div className={"d-block px-[15px] py-0"}>
             <p className={"font-normal text-xs pt-3 mb-0 md:mb-3"}>
               {article.date}
             </p>
@@ -81,11 +79,9 @@ const ArticleCard = ({ article, path }: IProp) => {
             >
               {article.shortIntro.slice(0, 100)} ...
             </p>
-            
+
             <h1
-              className={
-                "text-[22px] font-bold cursor-pointer tracking-wide "
-              }
+              className={"text-[22px] font-bold cursor-pointer tracking-wide "}
             >
               {article?.prompt?.slice(0, 100)}
             </h1>
@@ -96,9 +92,11 @@ const ArticleCard = ({ article, path }: IProp) => {
         <div
           className={combineClasses(
             classes.article_card_footer,
-            "mt-4 mb-3 flex items-center px-3"
+            "mt-4 mb-3 items-center px-3"
           )}
         >
+          <p className="text-[15px] text-grey-500">rate us</p>
+          <Rating name="size-large" defaultValue={2} />
           <div className={"flex items-center"}>
             <Avatar
               author={article.author}
@@ -112,37 +110,23 @@ const ArticleCard = ({ article, path }: IProp) => {
                 "text-sm font-medium"
               )}
             >
-              {article.author.name}
+              {article.author.name} (Designation)
             </LinkTo>
-            {/* <p className={combineClasses(classes.author_name, 'text-sm font-medium')}>
-              {article.author.name}
-            </p> */}
+     
           </div>
-          <button
-            data-modal-target="defaultModal"
-            data-modal-toggle="defaultModal"
-            type="button"
-            className="bg-orange-500 hover:bg-orange-700 text-white text-sm font-500 py-2 px-4  ml-6"
-          >
-            Rate Prompt
-          </button>
         </div>
       </div>
-      {/* <Modal
-        open={openRatingModel}
-        onClose={handleCloseRatingModel}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <RatingModel />
-      </Modal> */}
+
       <Modal
         open={openPromtModel}
         onClose={handleOpenPromtModel}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <AdaptationPromptModel handleClosePromtModel={handleOpenPromtModel} />
+        <AdaptationPromptModel
+          handleClosePromtModel={handleOpenPromtModel}
+          article={article}
+        />
       </Modal>
     </div>
   );

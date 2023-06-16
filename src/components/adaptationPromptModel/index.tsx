@@ -1,7 +1,9 @@
 import { MouseEventHandler } from "react";
+import { IArticleHeaderData } from "../../shared/interfaces";
 
 const AdaptationPromptModel = (props: {
   handleClosePromtModel: () => void;
+  article: IArticleHeaderData;
 }) => {
   return (
     <div className="fixed py-3 sm:max-w-xl sm:mx-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
@@ -10,13 +12,11 @@ const AdaptationPromptModel = (props: {
       <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
         <div className="max-w-md mx-auto">
           <div className="flex">
-            <h1 className="text-2xl font-semibold">
-              Login Form with Floating Labels
-            </h1>
+            <h1 className="text-2xl font-semibold">{props.article.prompt}</h1>
             <button
               onClick={props.handleClosePromtModel}
               type="button"
-              className="bg-red-500 hover:bg-red-400 rounded-md p-2 ml-2 inline-flex items-center justify-center text-white  focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="w-10 h-10 bg-red-500 hover:bg-red-400 rounded-md p-2 ml-2 inline-flex items-center justify-center text-white  focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
             >
               <span className="sr-only">Close menu</span>
 
@@ -42,33 +42,49 @@ const AdaptationPromptModel = (props: {
               <div className="relative">
                 <input
                   autoComplete="off"
-                  id="email"
-                  name="email"
+                  id="authorName"
+                  name="authorName"
                   type="text"
                   className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                  placeholder="Email address"
+                  placeholder="Author Name"
                 />
                 <label
-                  htmlFor="email"
+                  htmlFor="authorName"
                   className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
                 >
-                  Email Address
+                  Author Name
                 </label>
               </div>
               <div className="relative">
                 <input
                   autoComplete="off"
-                  id="password"
-                  name="password"
-                  type="password"
+                  id="designation"
+                  name="designation"
+                  type="text"
                   className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                  placeholder="Password"
+                  placeholder="Designation"
                 />
                 <label
-                  htmlFor="password"
+                  htmlFor="designation"
                   className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
                 >
-                  Password
+                  Designation
+                </label>
+              </div>
+              <div className="relative">
+                <input
+                  autoComplete="off"
+                  id="keyWords"
+                  name="keyWords"
+                  type="text"
+                  className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                  placeholder="Key Words (separated by commas)"
+                />
+                <label
+                  htmlFor="keyWords"
+                  className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                >
+                  Key Words
                 </label>
               </div>
               <div className="relative">

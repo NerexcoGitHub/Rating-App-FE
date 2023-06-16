@@ -34,21 +34,7 @@ const AddPromt = () => {
                   <div className="mb-4 md:mr-2 md:mb-0">
                     <label
                       className="block mb-2 text-sm font-bold text-gray-700"
-                      htmlFor="firstName"
-                    >
-                      Prompt Title
-                    </label>
-                    <input
-                      className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                      id="promptTitle"
-                      type="text"
-                      placeholder="Prompt Title"
-                    />
-                  </div>
-                  <div className="md:ml-2">
-                    <label
-                      className="block mb-2 text-sm font-bold text-gray-700"
-                      htmlFor="lastName"
+                      htmlFor="authorName"
                     >
                       Author Name
                     </label>
@@ -59,6 +45,34 @@ const AddPromt = () => {
                       placeholder="Author Name"
                     />
                   </div>
+                  <div className=" md:ml-2">
+                    <label
+                      className="block mb-2 text-sm font-bold text-gray-700"
+                      htmlFor="designation"
+                    >
+                      Designation
+                    </label>
+                    <input
+                      className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                      id="designation"
+                      type="text"
+                      placeholder="Designation"
+                    />
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <label
+                    className="block mb-2 text-sm font-bold text-gray-700"
+                    htmlFor="promptTitle"
+                  >
+                    Prompt Title
+                  </label>
+                  <input
+                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    id="promptTitle"
+                    type="text"
+                    placeholder="Prompt Title"
+                  />
                 </div>
                 <div className="mb-4">
                   <label
@@ -74,6 +88,25 @@ const AddPromt = () => {
                     placeholder="Description"
                   />
                 </div>
+                <div className="mb-4">
+                  <label
+                    className="block mb-2 text-sm font-bold text-gray-700"
+                    htmlFor="keyWords"
+                  >
+                    Category
+                  </label>
+                  <select
+                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    id="keyWords"
+                    placeholder="select category"
+                  >
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                  </select>
+                </div>
+
                 <div className="mb-4">
                   <label
                     className="block mb-2 text-sm font-bold text-gray-700"
@@ -144,7 +177,6 @@ const AddPromt = () => {
                   </button>
                 </div>
                 <hr className="mb-6 border-t" />
-              
               </form>
             </div>
           </div>

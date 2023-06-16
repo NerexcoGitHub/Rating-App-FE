@@ -85,12 +85,12 @@ export const PRIMARY_NAV: iNavSetup = {
             label: 'Home',
             path: '/'
         },
-        // {
-        //     // for categories don't add path and add type: dropdown and pass path empty
-        //     label: 'Blog',
-        //     type: 'dropdown',
-        //     path: ''
-        // },
+        {
+            // for categories don't add path and add type: dropdown and pass path empty
+            label: 'Blog',
+            type: '',
+            path: '/blog'
+        },
         {
             label: 'About Us',
             path: '/about-us'
@@ -125,12 +125,12 @@ export const PRIMARY_NAV: iNavSetup = {
             label: 'Add Prompt',
             path: '/add-prompt'
         },
-        // {
-        //     // for categories dont add path and add type: dropdown
-        //     label: 'Blog',
-        //     type: 'dropdown',
-        //     path: ''
-        // },
+        {
+            // for categories dont add path and add type: dropdown
+            label: 'Blog',
+            type: 'dropdown',
+            path: ''
+        },
         {
             label: 'About Us',
             path: '/about-us'
@@ -156,7 +156,7 @@ export const PRIMARY_NAV: iNavSetup = {
 export const DEFAULT_SEO: iSEO = {
     title: "prompt rating app",
     description: "prompt rating app",
-    keywords: "Blog, next js, template, next js blog, blog setup, typescript, nextjs typescript, react js blog template, responsive blog template",
+    keywords: "prompt rating app",
     url: WEBSITE_URL,
     author: `${MAYUR.name}, ${RUPALI.name}`,
     twitterHandle: '@WebExpe',
