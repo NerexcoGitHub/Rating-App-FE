@@ -8,6 +8,7 @@ import {
   Seperator,
   Slider,
 } from "../src/components";
+import { useState } from "react";
 
 const AddPromt = () => {
   const PAGE_SEO: iSEO = {
@@ -17,6 +18,16 @@ const AddPromt = () => {
     keywords: "webexpx, contact us, webexpe13@gmail.com, next js blog template",
     author: "Mayur Nalwala, Rupali Yadav",
   };
+
+  const [promptData, setPromptData] = useState({});
+
+  const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
+    setPromptData({
+      ...promptData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  console.log(promptData);
   return (
     <PageLayout PAGE_SEO={PAGE_SEO} home>
       <div className="container mx-auto">
@@ -42,7 +53,9 @@ const AddPromt = () => {
                       className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                       id="AuthorName"
                       type="text"
+                      name="userName"
                       placeholder="Author Name"
+                      onChange={handleInputChange}
                     />
                   </div>
                   <div className=" md:ml-2">
@@ -53,10 +66,12 @@ const AddPromt = () => {
                       Designation
                     </label>
                     <input
+                      name="designation"
                       className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                       id="designation"
                       type="text"
                       placeholder="Designation"
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
@@ -68,10 +83,12 @@ const AddPromt = () => {
                     Prompt Title
                   </label>
                   <input
+                    name="title"
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="promptTitle"
                     type="text"
                     placeholder="Prompt Title"
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div className="mb-4">
@@ -82,10 +99,12 @@ const AddPromt = () => {
                     Description
                   </label>
                   <input
+                  name="description"
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="description"
                     type="text"
                     placeholder="Description"
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div className="mb-4">
@@ -99,6 +118,8 @@ const AddPromt = () => {
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="keyWords"
                     placeholder="select category"
+                    onChange={handleInputChange}
+                    name='category'
                   >
                     <option value="volvo">Volvo</option>
                     <option value="saab">Saab</option>
@@ -110,15 +131,17 @@ const AddPromt = () => {
                 <div className="mb-4">
                   <label
                     className="block mb-2 text-sm font-bold text-gray-700"
-                    htmlFor="keyWords"
+                    htmlFor="inputParameters"
                   >
-                    Key Words
+                    Input Parameters
                   </label>
                   <input
+                  name="inputParams"
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    id="keyWords"
+                    id="inputParameters"
                     type="text"
-                    placeholder="Add Key Words comma seperated"
+                    placeholder="Input Parameters (comma seperated)-book,author,genre"
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div className="mb-4">
@@ -128,11 +151,12 @@ const AddPromt = () => {
                   >
                     Prompt
                   </label>
-                  <input
+                  <textarea
+                  name="prompt"
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="prompt"
-                    type="text"
-                    placeholder="Add your prompt here"
+                    placeholder="Add Prompt-I want to read a {book} by {author} in {genre}"
+                    onChange={handleInputChange}
                   />
                 </div>
                 {/* <div className="mb-4 md:flex md:justify-between">

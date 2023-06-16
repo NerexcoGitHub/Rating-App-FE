@@ -1,0 +1,1 @@
+export const PRMPT_SELECT: any = {}

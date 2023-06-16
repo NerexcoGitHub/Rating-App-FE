@@ -122,6 +122,7 @@ const CenteredNavbar = ({
               openDD={openDD}
               setOpenDD={() => setOpenDD(!openDD)}
               floating
+              key={i}
             />
           )
         )}

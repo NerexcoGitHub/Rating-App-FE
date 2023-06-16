@@ -7,6 +7,7 @@ import ReactPaginate from "react-paginate";
 import { useEffect, useState } from "react";
 import { iArticle } from "../../shared/interfaces";
 import { AiFillCaretRight, AiFillCaretLeft } from "react-icons/ai";
+import SelectComponent from "./SelectComponent";
 
 const BlogIndexPage = ({
   articlesPerPage = 6,
@@ -68,81 +69,43 @@ const BlogIndexPage = ({
         ) : null} */}
 
         <div className="flex flex-wrap">
-          <div className="m-2">
-            <label
-              className="block mb-2 text-sm font-bold text-gray-700"
-              htmlFor="keyWords"
-            >
-              Category
-            </label>
-            <select
-              className="w-full px-6 py-3 m-1 text-md leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-              id="keyWords"
-              placeholder="select category"
-            >
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="mercedes">Mercedes</option>
-              <option value="audi">Audi</option>
-            </select>
-          </div>
-          <div className="m-2">
-            <label
-              className="block mb-2 text-sm font-bold text-gray-700"
-              htmlFor="keyWords"
-            >
-              Category
-            </label>
-            <select
-              className="w-full px-6 py-3 m-1 text-md leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-              id="keyWords"
-              placeholder="select category"
-            >
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="mercedes">Mercedes</option>
-              <option value="audi">Audi</option>
-            </select>
-          </div>
-          <div className="m-2">
-            <label
-              className="block mb-2 text-sm font-bold text-gray-700"
-              htmlFor="keyWords"
-            >
-              Category
-            </label>
-            <select
-              className="w-full px-6 py-3 m-1 text-md leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-              id="keyWords"
-              placeholder="select category"
-            >
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="mercedes">Mercedes</option>
-              <option value="audi">Audi</option>
-            </select>
-          </div>
-          <div className="m-2">
-            <label
-              className="block mb-2 text-sm font-bold text-gray-700"
-              htmlFor="keyWords"
-            >
-              Category
-            </label>
-            <select
-              className="w-full px-6 py-3 m-1 text-md leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-              id="keyWords"
-              placeholder="select category"
-            >
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="mercedes">Mercedes</option>
-              <option value="audi">Audi</option>
-            </select>
-          </div>
+          <SelectComponent
+            options={["tdfgdf"]}
+            onChange={() => {}}
+            value={""}
+            label={"Category"}
+            name={"keyWords"}
+            className={"sdfs"}
+          />
+
+          <SelectComponent
+            options={["tdfgdf"]}
+            onChange={() => {}}
+            value={""}
+            label={"Category"}
+            name={"keyWords"}
+            className={"sdfs"}
+          />
+
+          <SelectComponent
+            options={["tdfgdf"]}
+            onChange={() => {}}
+            value={""}
+            label={"Category"}
+            name={"keyWords"}
+            className={"sdfs"}
+          />
+
+          <SelectComponent
+            options={["tdfgdf"]}
+            onChange={() => {}}
+            value={""}
+            label={"Category"}
+            name={"keyWords"}
+            className={"sdfs"}
+          />
         </div>
         <hr className="mt-[5px] mb-[15px]" />
-
 
         <div className="flex flex-wrap">
           {currentItems
