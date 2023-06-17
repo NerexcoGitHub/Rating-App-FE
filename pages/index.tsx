@@ -8,6 +8,7 @@ import Hero from "../src/components/Hero";
 const Home = () => {
   return (
     <PageLayout home PAGE_SEO={DEFAULT_SEO}>
+     
       <Hero />
       <div className="container mx-auto lg:px-[15px] px-0">
         <div className={"flex flex-wrap"}>

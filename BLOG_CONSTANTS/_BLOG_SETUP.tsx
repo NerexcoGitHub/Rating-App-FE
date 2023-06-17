@@ -87,7 +87,7 @@ export const PRIMARY_NAV: iNavSetup = {
         },
         {
             // for categories don't add path and add type: dropdown and pass path empty
-            label: 'Blog',
+            label: 'Prompts',
             type: '',
             path: '/blog'
         },
@@ -127,9 +127,9 @@ export const PRIMARY_NAV: iNavSetup = {
         },
         {
             // for categories dont add path and add type: dropdown
-            label: 'Blog',
-            type: 'dropdown',
-            path: ''
+            label: 'Prompts',
+            
+            path: '/blog'
         },
         {
             label: 'About Us',

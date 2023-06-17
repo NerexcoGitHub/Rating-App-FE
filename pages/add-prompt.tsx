@@ -9,6 +9,9 @@ import {
   Slider,
 } from "../src/components";
 import { useState } from "react";
+import { publicRequest } from "../config/axiosRequest";
+import { successToast } from "../src/components/ToastComponent/SuccessToast";
+import { errToast } from "../src/components/ToastComponent/ErrToast";
 
 const AddPromt = () => {
   const PAGE_SEO: iSEO = {
@@ -19,15 +22,31 @@ const AddPromt = () => {
     author: "Mayur Nalwala, Rupali Yadav",
   };
 
-  const [promptData, setPromptData] = useState({});
+  const [promptData, setPromptData] = useState({
+    userId:""
+  });
 
-  const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleInputChange = (e: { target: { name: any; value: any } }) => {
     setPromptData({
       ...promptData,
       [e.target.name]: e.target.value,
     });
   };
-  console.log(promptData);
+
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    console.log(promptData);
+    const res = publicRequest
+      .post("/user/add-prompt", promptData)
+      .then((res) => {
+        console.log(res);
+        successToast( `save your secret key ${res.data.result.author}`,false)
+      })
+      .catch((err) => {
+        console.log(err);
+        errToast("Something went wrong");
+      });
+  };
   return (
     <PageLayout PAGE_SEO={PAGE_SEO} home>
       <div className="container mx-auto">
@@ -53,7 +72,7 @@ const AddPromt = () => {
                       className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                       id="AuthorName"
                       type="text"
-                      name="userName"
+                      name="author"
                       placeholder="Author Name"
                       onChange={handleInputChange}
                     />
@@ -99,7 +118,7 @@ const AddPromt = () => {
                     Description
                   </label>
                   <input
-                  name="description"
+                    name="description"
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="description"
                     type="text"
@@ -119,7 +138,7 @@ const AddPromt = () => {
                     id="keyWords"
                     placeholder="select category"
                     onChange={handleInputChange}
-                    name='category'
+                    name="category"
                   >
                     <option value="volvo">Volvo</option>
                     <option value="saab">Saab</option>
@@ -136,7 +155,7 @@ const AddPromt = () => {
                     Input Parameters
                   </label>
                   <input
-                  name="inputParams"
+                    name="inputParams"
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="inputParameters"
                     type="text"
@@ -144,6 +163,7 @@ const AddPromt = () => {
                     onChange={handleInputChange}
                   />
                 </div>
+
                 <div className="mb-4">
                   <label
                     className="block mb-2 text-sm font-bold text-gray-700"
@@ -152,10 +172,27 @@ const AddPromt = () => {
                     Prompt
                   </label>
                   <textarea
-                  name="prompt"
+                    name="prompt"
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="prompt"
                     placeholder="Add Prompt-I want to read a {book} by {author} in {genre}"
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label
+                    className="block mb-2 text-sm font-bold text-gray-700"
+                    htmlFor="userId"
+                  >
+                    Author ID (If Have)
+                  </label>
+                  <input
+                    name="userId"
+                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    id="userId"
+                    type="text"
+                    placeholder="If you have an author ID, please enter it here."
                     onChange={handleInputChange}
                   />
                 </div>
@@ -195,7 +232,7 @@ const AddPromt = () => {
                 <div className="mb-6 text-center">
                   <button
                     className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-                    type="button"
+                    onClick={handleSubmit}
                   >
                     Save Prompt
                   </button>
@@ -211,3 +248,5 @@ const AddPromt = () => {
 };
 
 export default AddPromt;
+
+

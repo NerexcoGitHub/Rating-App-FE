@@ -6,6 +6,8 @@ import { CREATE_SEO_CONFIG, getArticleDetails } from '../../utils/utils';
 import Centered from './BlogCentered';
 import WithSidebar from './BlogWithSidebar';
 import HomeLayout from './HomeLayout';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface IBlogLayout {
     children: any
@@ -31,6 +33,7 @@ const PageLayout = ({ children, PAGE_SEO, blogwithsidebar = false, blogcentered 
         <>
             <NextSeo {...SEO_CONFIG} />
             <Navbar />
+            <ToastContainer />
             {
                 blogwithsidebar ? <WithSidebar children={children} ads={ads} /> :
                     blogcentered ? <Centered children={children} /> :

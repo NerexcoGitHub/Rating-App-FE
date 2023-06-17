@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import getScrollAnimation from "../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "./ScrollAnimationWrapper";
 
+
 const Hero = ({
   listUser = [
     {
@@ -23,8 +24,11 @@ const Hero = ({
       icon: "/assets/Icon/bx_bxs-server.svg",
     },
   ],
+
+
 }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
+
 
   return (
     <div className="max-w-screen-xl mt-7 px-8 xl:px-16 mx-auto" id="about">

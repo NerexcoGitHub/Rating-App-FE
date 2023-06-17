@@ -17,7 +17,7 @@ import { Modal, Rating } from "@mui/material";
 import AdaptationPromptModel from "../adaptationPromptModel";
 
 interface IProp {
-  article: IArticleHeaderData;
+  article: any;
   path: string;
 }
 
@@ -60,7 +60,7 @@ const ArticleCard = ({ article, path }: IProp) => {
 
           <div className={"d-block px-[15px] py-0"}>
             <p className={"font-normal text-xs pt-3 mb-0 md:mb-3"}>
-              {article.date}
+              {article.createdAt.slice(0, 10)}
             </p>
 
             <h1
@@ -68,7 +68,7 @@ const ArticleCard = ({ article, path }: IProp) => {
                 "text-[18px] font-bold cursor-pointer tracking-wide text-blue-600"
               }
             >
-              {article.articleTitle}
+              {article.title}
             </h1>
 
             <p
@@ -77,7 +77,7 @@ const ArticleCard = ({ article, path }: IProp) => {
                 "text-sm font-normal mt-2 md:mt-1"
               )}
             >
-              {article.shortIntro.slice(0, 100)} ...
+              {article.description.slice(0, 100)} ...
             </p>
 
             <h1
@@ -85,7 +85,7 @@ const ArticleCard = ({ article, path }: IProp) => {
             >
               {article?.prompt?.slice(0, 100)}
             </h1>
-            <ArticleTags tags={article.tags} />
+            <ArticleTags tags={article.inputParams} />
           </div>
         </div>
         <ArticleRating />
@@ -99,25 +99,25 @@ const ArticleCard = ({ article, path }: IProp) => {
           <Rating name="size-large" defaultValue={2} />
           <div className={"flex items-center"}>
             <Avatar
-              author={article.author}
+              author={article.author}              
               className="w-[40px] h-[40px] mr-3 text-xl"
             />
             <LinkTo
-              href={"/blog?author=" + article.author.name}
+              href={"/blog?author=" + article.author.userName}
               passHref
               className={combineClasses(
                 classes.author_name,
                 "text-sm font-medium"
               )}
             >
-              {article.author.name} (Designation)
+              {article.author.userName} (designation)
             </LinkTo>
      
           </div>
         </div>
       </div>
 
-      <Modal
+      {/* <Modal
         open={openPromtModel}
         onClose={handleOpenPromtModel}
         aria-labelledby="modal-modal-title"
@@ -127,7 +127,7 @@ const ArticleCard = ({ article, path }: IProp) => {
           handleClosePromtModel={handleOpenPromtModel}
           article={article}
         />
-      </Modal>
+      </Modal> */}
     </div>
   );
 };
