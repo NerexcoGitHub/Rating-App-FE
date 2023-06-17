@@ -18,7 +18,7 @@ const Home = () => {
             everything else…
           </h1>
           <hr className="border-1 mb-5 w-[98%] mx-auto" />
-          <HomeNonFeatureArticles />
+          {/* <HomeNonFeatureArticles /> */}
         </div>
       </div>
       
