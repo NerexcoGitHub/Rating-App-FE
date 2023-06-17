@@ -10,6 +10,7 @@ import { iArticle } from "../../shared/interfaces";
 import { AiFillCaretRight, AiFillCaretLeft } from "react-icons/ai";
 import SelectComponent from "./SelectComponent";
 import { publicRequest } from "../../../config/axiosRequest";
+import SearchForm from "./SearchComponent";
 
 const BlogIndexPage = ({
   articlesPerPage = 6,
@@ -37,10 +38,11 @@ const BlogIndexPage = ({
   //   );
   // }, [category, author]);
 
-  const initObject: { [key: string]: string } = {};
+  const initObject: { [key: string]: string | number } = {};
   PROMPT_SELECT.forEach((item) => {
-    initObject[item.name] = "";
+    initObject[item.name] = "0";
   });
+  initObject["search"] = "";
 
   const [currentItems, setCurrentItems] = useState(ARTICLES);
   const [pageCount, setPageCount] = useState(0);
@@ -56,7 +58,7 @@ const BlogIndexPage = ({
 
   useEffect(() => {
     const prompts = publicRequest
-      .get("/user/get-prompts")
+      .post("/user/get-prompts", filterOption)
       .then((res) => {
         console.log(res.data);
         setPrompts(res.data);
@@ -65,6 +67,7 @@ const BlogIndexPage = ({
         console.log(err);
       });
   }, [filterOption]);
+
   const handlePageClick = (event: any) => {
     const newOffset = (event.selected * articlesPerPage) % ARTICLES.length;
     setItemOffset(newOffset);
@@ -75,6 +78,11 @@ const BlogIndexPage = ({
     setFilterOption({ ...filterOption, [name]: value });
   };
 
+  const handleSearchChange = (value:string) => {
+    setFilterOption({ ...filterOption, ["search"]: value });
+  };
+
+  console.log(filterOption);
   return (
     <PageLayout home>
       <div
@@ -112,7 +120,10 @@ const BlogIndexPage = ({
               );
             }
           )}
+
+       
         </div>
+      < SearchForm handleSearchChange={handleSearchChange}/>
         <hr className="mt-[5px] mb-[15px]" />
 
         <div className="flex flex-wrap">

@@ -24,10 +24,10 @@ interface IProp {
 const ArticleCard = ({ article, path }: IProp) => {
   const [openPromtModel, setOpenPromtModel] = useState(false);
   const handleOpenPromtModel = () => {
-    console.log("open promt model");
     setOpenPromtModel(!openPromtModel);
   };
 
+  console.log(article);
   // set url and path
   const origin =
     typeof window !== "undefined" && window.location.origin
@@ -60,7 +60,7 @@ const ArticleCard = ({ article, path }: IProp) => {
 
           <div className={"d-block px-[15px] py-0"}>
             <p className={"font-normal text-xs pt-3 mb-0 md:mb-3"}>
-              {article.createdAt.slice(0, 10)}
+              {article?.createdAt?.slice(0, 10)}
             </p>
 
             <h1
@@ -68,7 +68,7 @@ const ArticleCard = ({ article, path }: IProp) => {
                 "text-[18px] font-bold cursor-pointer tracking-wide text-blue-600"
               }
             >
-              {article.title}
+              {article?.title}
             </h1>
 
             <p
@@ -77,7 +77,7 @@ const ArticleCard = ({ article, path }: IProp) => {
                 "text-sm font-normal mt-2 md:mt-1"
               )}
             >
-              {article.description.slice(0, 100)} ...
+              {article?.description?.slice(0, 100)} ...
             </p>
 
             <h1
@@ -88,7 +88,7 @@ const ArticleCard = ({ article, path }: IProp) => {
             <ArticleTags tags={article.inputParams} />
           </div>
         </div>
-        <ArticleRating />
+         <ArticleRating rating={article?.rating}/>
         <div
           className={combineClasses(
             classes.article_card_footer,

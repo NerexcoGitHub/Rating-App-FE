@@ -8,7 +8,7 @@ export const PROMPT_SELECT:IPromptSelect[]  = [
   {
     label: "Catergory",
     options: [
-    {"all": 'all'},
+    {"all": 0},
     {"blogs and articles": 'blogsAndArticles'},
     {"ads and marketing": 'adsAndMarketing'},
     {"e-commerce": 'eCommerce'},

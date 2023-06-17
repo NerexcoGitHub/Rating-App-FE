@@ -1,21 +1,39 @@
+import { useEffect, useState } from "react";
 import { SORTED_ARTICLES_BY_DATE } from "../../../BLOG_CONSTANTS/_ARTICLES_LIST"
+import { publicRequest } from "../../../config/axiosRequest";
 import { iArticle } from "../../shared/interfaces"
 import ArticleCard from '../ArticleCards/ArticleCard';
 import LinkTo from "../LinkTo";
 
 const HomeNonFeatureArticles = () => {
+
+
     const restArticles = SORTED_ARTICLES_BY_DATE.filter((article: iArticle) => !article.featureArticle);
     const articlesToDisplay = 9;
+    const [prompts, setPrompts] = useState([]);
+    
+    useEffect(() => {
+        const prompts = publicRequest
+          .get("/user/get-prompts-newest")
+          .then((res) => {
+          
+            setPrompts(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }, []);
+      
     return (
         <>
             {
-                restArticles.length ?
-                    restArticles.slice(0, articlesToDisplay).map((each, i) => (
-                        <ArticleCard article={each.preview} path={each.path} key={each.path + i} />
+               prompts.length ?
+                    prompts.slice(0, articlesToDisplay).map((each, i) => (
+                        <ArticleCard article={each} path={"test"} key={i} />
                     )) : null
             }
 
-            {
+            {/* {
                 restArticles.length > articlesToDisplay ?
                     (
                         <div className="w-full flex items-center">
@@ -30,7 +48,7 @@ const HomeNonFeatureArticles = () => {
                             </LinkTo>
                         </div>
                     ) : null
-            }
+            } */}
 
         </>
     )

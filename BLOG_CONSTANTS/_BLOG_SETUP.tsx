@@ -91,10 +91,10 @@ export const PRIMARY_NAV: iNavSetup = {
             type: '',
             path: '/blog'
         },
-        {
-            label: 'About Us',
-            path: '/about-us'
-        },
+        // {
+        //     label: 'About Us',
+        //     path: '/about-us'
+        // },
         // {
         //     // to open a link in new tab pass newTab: true
         //     label: 'Support Us',
@@ -110,10 +110,10 @@ export const PRIMARY_NAV: iNavSetup = {
             label: 'Add Prompt',
             path: '/add-prompt'
         },
-        {
-            label: 'Contact Us',
-            path: '/contact-us'
-        }
+        // {
+        //     label: 'Contact Us',
+        //     path: '/contact-us'
+        // }
     ],
     // sideNavLinks are the links which appear when you open the side menu after clicking the burger menu icon.
     sideNavLinks: [
@@ -131,10 +131,10 @@ export const PRIMARY_NAV: iNavSetup = {
             
             path: '/blog'
         },
-        {
-            label: 'About Us',
-            path: '/about-us'
-        },
+        // {
+        //     label: 'About Us',
+        //     path: '/about-us'
+        // },
         // {
         //     label: 'Support Us',
         //     path: 'https://www.buymeacoffee.com/webexpe13z',
@@ -145,10 +145,10 @@ export const PRIMARY_NAV: iNavSetup = {
         //     path: 'https://github.com/webexpe13/blog-template-using-nextjs-typescript-tailwindcss',
         //     newTab: true
         // },
-        {
-            label: 'Contact Us',
-            path: '/contact-us'
-        }
+        // {
+        //     label: 'Contact Us',
+        //     path: '/contact-us'
+        // }
     ],
     socials: []
 }
