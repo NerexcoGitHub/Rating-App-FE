@@ -15,6 +15,7 @@ import SearchForm from "./SearchComponent";
 const BlogIndexPage = ({
   articlesPerPage = 6,
 }: {
+
   articlesPerPage?: number;
 }) => {
   // const router = useRouter();

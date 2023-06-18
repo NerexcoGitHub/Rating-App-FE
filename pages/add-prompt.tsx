@@ -14,7 +14,7 @@ import { successToast } from "../src/components/ToastComponent/SuccessToast";
 import { errToast } from "../src/components/ToastComponent/ErrToast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { PROMPT_SELECT } from "../BLOG_CONSTANTS/_PROMPT_SELECT";
+
 
 interface FormValues {
   author: string;
