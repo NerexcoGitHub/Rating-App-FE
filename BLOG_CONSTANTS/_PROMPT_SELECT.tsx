@@ -42,6 +42,7 @@ export const PROMPT_SELECT:IPromptSelect[]  = [
         {"1 stars": 1},
 
     ],
+    
     name: "rating",
     },
 ];
