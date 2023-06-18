@@ -91,6 +91,11 @@ export const PRIMARY_NAV: iNavSetup = {
             type: '',
             path: '/blog'
         },
+        {
+            label: 'My Prompts',
+            path: '/my-prompts'
+
+        },
         // {
         //     label: 'About Us',
         //     path: '/about-us'
@@ -130,6 +135,11 @@ export const PRIMARY_NAV: iNavSetup = {
             label: 'Prompts',
             
             path: '/blog'
+        },
+        {
+            label: 'My Prompts',
+            path: '/my-prompts'
+
         },
         // {
         //     label: 'About Us',
