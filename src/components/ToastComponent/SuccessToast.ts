@@ -5,7 +5,7 @@ export const successToast = (msg: string,closeTime:number|false|undefined) => {
         position: "top-right",
         autoClose: closeTime,
         hideProgressBar: false,
-        closeOnClick: true,
+        closeOnClick: false,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
