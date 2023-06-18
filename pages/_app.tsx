@@ -10,6 +10,7 @@ import * as gtag from '../google';
 import { useEffect, useState } from 'react';
 import { CREATE_SEO_CONFIG } from '../src/utils/utils';
 import { ThemeProvider } from 'next-themes'
+import { publicRequest } from "../config/axiosRequest";
 
 import "@uiw/react-textarea-code-editor/dist.css";
 import 'react-medium-image-zoom/dist/styles.css';
@@ -17,10 +18,19 @@ import 'react-medium-image-zoom/dist/styles.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [mounted, setMounted] = useState(false);
+  const [ip, setIP] = useState('');
   const env = process.env.NODE_ENV;
+
+
+  const getData = async () => {
+    const res = await publicRequest.get("https://api.ipify.org/?format=json");
+    console.log(res.data);
+    setIP(res.data.ip);
+  };
 
   useEffect(() => {
     setMounted(true);
+    getData();
   }, []);
   let SEO_CONFIG = CREATE_SEO_CONFIG({});
 
