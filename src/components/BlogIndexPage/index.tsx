@@ -1,6 +1,6 @@
 import ArticleCard from "../../components/ArticleCards/ArticleCard";
 import { SORTED_ARTICLES_BY_DATE } from "../../../BLOG_CONSTANTS/_ARTICLES_LIST";
-import { PROMPT_SELECT } from "../../../config/_PROMPT_SELECT";
+import { PROMPT_SELECT } from "../../../BLOG_CONSTANTS/_PROMPT_SELECT";
 import { useRouter } from "next/router";
 import { PageLayout } from "../../components";
 import { combineClasses } from "../../utils/utils";
