@@ -51,12 +51,7 @@ const AddPromt = () => {
     userId: "",
   });
 
-  const handleInputChange = (e: { target: { name: any; value: any } }) => {
-    setPromptData({
-      ...promptData,
-      [e.target.name]: e.target.value,
-    });
-  };
+
 
   const handleSubmit = async (values: FormValues) => {
    
@@ -96,7 +91,10 @@ const AddPromt = () => {
       userId: "",
     },
     validationSchema,
-    onSubmit: handleSubmit,
+    onSubmit: (values, { resetForm }) => {
+      handleSubmit(values);
+      resetForm();
+    },
   });
 
   return (

@@ -26,7 +26,7 @@ interface IProp {
 const ArticleCard = ({ article, path }: IProp) => {
   const [openPromtModel, setOpenPromtModel] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(["deviceId"]);
-  const [currentRate, setCurrentRate] = useState<number >(0);
+  const [currentRate, setCurrentRate] = useState<number>(0);
 
   const handleOpenPromtModel = () => {
     setOpenPromtModel(!openPromtModel);
@@ -65,9 +65,6 @@ const ArticleCard = ({ article, path }: IProp) => {
     }
   };
 
-
-
-
   // set url and path
   // const origin =
   //   typeof window !== "undefined" && window.location.origin
@@ -79,7 +76,7 @@ const ArticleCard = ({ article, path }: IProp) => {
   // };
 
   return (
-    <div className={"w-full lg:w-1/3 md:w-1/2 md:px-[15px] px-2 mb-[30px]"}>
+    <div className={"w-full lg:w-1/3 md:w-1/2 md:px-[15px] px-2 mb-[30px] "}>
       <div
         className={combineClasses(
           classes.article_card,
@@ -120,25 +117,31 @@ const ArticleCard = ({ article, path }: IProp) => {
               {article?.description?.slice(0, 100)} ...
             </p>
 
-            <h1
+            {/* <h1
               className={"text-[22px] font-bold cursor-pointer tracking-wide "}
             >
               {article?.prompt?.slice(0, 100)}
-            </h1>
+            </h1> */}
             <ArticleTags tags={article.inputParams} />
           </div>
         </div>
-        <ArticleRating rating={article?.rating} count={article?.ratecount} sum={article?.ratesum} usercount={article?.ratingList?.length || 0 }/>
+        <ArticleRating
+          rating={article?.rating}
+          count={article?.ratecount}
+          sum={article?.ratesum}
+          usercount={article?.ratingList?.length || 0}
+        />
         {checkIfRated(article?.ratingList) ? (
           <div className="m-4">
             <p className="text-[11px] text-red-500">
-              You have already been rated
+              You have already rated this prompt
             </p>
           </div>
         ) : (
-          <>
-            <p className="text-[15px] text-grey-500">rate us</p>
+          <div className="pl-5">
+            <p className="text-[15px] text-grey-500">Rate this Prompt</p>
             <Rating
+              size="large"
               name="size-large"
               defaultValue={currentRate}
               onChange={(event, newValue) => {
@@ -146,7 +149,7 @@ const ArticleCard = ({ article, path }: IProp) => {
               }}
               readOnly={currentRate !== 0}
             />
-          </>
+          </div>
         )}
         <div
           className={combineClasses(
@@ -167,7 +170,7 @@ const ArticleCard = ({ article, path }: IProp) => {
                 "text-sm font-medium"
               )}
             >
-              {article.author.userName} (designation)
+              {article.author.userName} ({article?.author?.designation})
             </LinkTo>
           </div>
         </div>

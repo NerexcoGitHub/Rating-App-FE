@@ -49,22 +49,14 @@ const EditPromt = () => {
     userId: "",
   });
   const [prompt, setPrompt] = useState({} as any);
+  const [initialValues, setInitialValues] = useState<FormValues>({} as any);
   const [cookies, setCookie, removeCookie] = useCookies(["authorId"]);
   const { author } = router.query;
 
   author &&
     setCookie("authorId", author, {
       path: "/",
-     
     });
-
-  
-  const handleInputChange = (e: { target: { name: any; value: any } }) => {
-    setPromptData({
-      ...promptData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   useEffect(() => {
     const authorId = cookies.authorId;
@@ -76,6 +68,16 @@ const EditPromt = () => {
       .catch((err) => {});
   }, [author]);
 
+  useEffect(() => {
+    setInitialValues({
+      title: prompt?.title,
+      description: prompt?.description,
+      category: prompt?.category,
+      inputParams: prompt?.inputParams,
+      prompt: prompt?.prompt,
+    });
+  }, [prompt]);
+
   const handleSubmit = async (values: FormValues) => {
     const filteredObj = Object.fromEntries(
       Object.entries(values).filter(
@@ -85,12 +87,11 @@ const EditPromt = () => {
     console.log(filteredObj);
     const Id = cookies.authorId;
     const res = publicRequest
-      .patch("/user/update-prompt/"+Id, filteredObj)
+      .patch("/user/update-prompt/" + Id, filteredObj)
       .then((res) => {
-        successToast('update successfully!',3000);
+        successToast("update successfully!", 3000);
       })
       .catch((err) => {
-        
         errToast("Something went wrong!");
       });
   };
@@ -104,14 +105,9 @@ const EditPromt = () => {
   });
 
   const formik = useFormik({
-    initialValues: {
-      title: "",
-      description: "",
-      category: "",
-      inputParams: "",
-      prompt: "",
-    },
+    initialValues: initialValues,
     validationSchema,
+    enableReinitialize:true,
     onSubmit: handleSubmit,
   });
 
@@ -143,7 +139,6 @@ const EditPromt = () => {
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="promptTitle"
                     type="text"
-                    placeholder={prompt.title}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.title}

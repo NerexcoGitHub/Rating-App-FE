@@ -8,9 +8,9 @@ const ArticleRating = (props:any) => {
   }
 
   return (
-    <div className="mb-2 flex flex-col items-center  ">
+    <div className="mb-1 flex flex-col items-start pl-5">
       <span className="flex items-center gap-4 text-sm rounded text-slate-500">
-        <Rating name="read-only" value={Math.round(rate)} readOnly />
+        <Rating size="large" name="read-only" value={Math.round(rate)} readOnly />
         <span>{rate} out 5</span>
       </span>
 
