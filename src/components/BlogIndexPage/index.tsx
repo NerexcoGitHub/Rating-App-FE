@@ -13,7 +13,7 @@ import { publicRequest } from "../../../config/axiosRequest";
 import SearchForm from "./SearchComponent";
 
 const BlogIndexPage = ({
-  articlesPerPage = 6,
+  articlesPerPage = 3,
 }: {
 
   articlesPerPage?: number;
@@ -27,7 +27,7 @@ const BlogIndexPage = ({
   //   (each) => each.preview.author.name === author
   // );
 
-  const [ARTICLES, setARTICLES] = useState(SORTED_ARTICLES_BY_DATE);
+  // const [ARTICLES, setARTICLES] = useState(SORTED_ARTICLES_BY_DATE);
 
   // useEffect(() => {
   //   setARTICLES(
@@ -45,7 +45,7 @@ const BlogIndexPage = ({
   });
   initObject["search"] = "";
 
-  const [currentItems, setCurrentItems] = useState(ARTICLES);
+  const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [filterOption, setFilterOption] = useState(initObject);
@@ -53,12 +53,14 @@ const BlogIndexPage = ({
 
   useEffect(() => {
     const endOffset = itemOffset + articlesPerPage;
-    setCurrentItems(ARTICLES.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(ARTICLES.length / articlesPerPage));
-  }, [itemOffset, articlesPerPage, ARTICLES]);
+    setCurrentItems(prompts.slice(itemOffset, endOffset));
+    console.log(prompts.length, articlesPerPage);
+    setPageCount(Math.ceil(prompts.length / articlesPerPage));
+  }, [itemOffset, articlesPerPage, prompts]);
 
+ 
   useEffect(() => {
-    const prompts = publicRequest
+     publicRequest
       .post("/user/get-prompts", filterOption)
       .then((res) => {
         console.log(res.data);
@@ -70,7 +72,7 @@ const BlogIndexPage = ({
   }, [filterOption]);
 
   const handlePageClick = (event: any) => {
-    const newOffset = (event.selected * articlesPerPage) % ARTICLES.length;
+    const newOffset = (event.selected * articlesPerPage) % prompts.length;
     setItemOffset(newOffset);
   };
 
@@ -128,8 +130,8 @@ const BlogIndexPage = ({
         <hr className="mt-[5px] mb-[15px]" />
 
         <div className="flex flex-wrap">
-          {prompts.length > 0
-            ? (prompts as any).map((each: any, i: any) => (
+          {currentItems.length > 0
+            ? (currentItems as any).map((each: any, i: any) => (
                 <ArticleCard article={each} path={"test"} key={i} />
               ))
             : null}

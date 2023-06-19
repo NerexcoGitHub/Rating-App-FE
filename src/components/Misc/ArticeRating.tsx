@@ -1,15 +1,21 @@
 import { Rating } from "@mui/material";
 
 const ArticleRating = (props:any) => {
+
+  let rate=0
+  if (props.count && props.sum) {
+   rate =  props.sum/props.count;
+  }
+
   return (
-    <div className="mb-2 flex flex-col items-center gap-2 ">
+    <div className="mb-2 flex flex-col items-center  ">
       <span className="flex items-center gap-4 text-sm rounded text-slate-500">
-        <Rating name="read-only" value={props.rating} readOnly />
-        <span>4.1 out 5</span>
+        <Rating name="read-only" value={Math.round(rate)} readOnly />
+        <span>{rate} out 5</span>
       </span>
 
       <span className="text-xs leading-6 text-slate-400">
-        based on 42 user ratings
+        based on {props.usercount} user ratings
       </span>
     </div>
   );

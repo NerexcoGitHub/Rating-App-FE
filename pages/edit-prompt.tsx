@@ -55,8 +55,10 @@ const EditPromt = () => {
   author &&
     setCookie("authorId", author, {
       path: "/",
+     
     });
 
+  
   const handleInputChange = (e: { target: { name: any; value: any } }) => {
     setPromptData({
       ...promptData,
