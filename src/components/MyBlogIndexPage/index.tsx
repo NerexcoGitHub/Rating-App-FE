@@ -1,4 +1,3 @@
-import ArticleCard from "../../components/ArticleCards/ArticleCard";
 import { SORTED_ARTICLES_BY_DATE } from "../../../BLOG_CONSTANTS/_ARTICLES_LIST";
 import { PROMPT_SELECT } from "../../../BLOG_CONSTANTS/_PROMPT_SELECT";
 import { useRouter } from "next/router";
@@ -10,6 +9,7 @@ import { iArticle } from "../../shared/interfaces";
 import { AiFillCaretRight, AiFillCaretLeft } from "react-icons/ai";
 import { publicRequest } from "../../../config/axiosRequest";
 import MySearchForm from "./MyPromptsSearch";
+import MyArticleCard from "../ArticleCards/MyArticleCard";
 
 const MyBlogIndexPage = ({
   articlesPerPage = 6,
@@ -94,7 +94,7 @@ const MyBlogIndexPage = ({
         <div className="flex flex-wrap">
           {prompts.length > 0
             ? (prompts as any).map((each: any, i: any) => (
-                <ArticleCard article={each} path={"test"} key={i} />
+                <MyArticleCard article={each} path={"test"} key={i} />
               ))
             : null}
         </div>
