@@ -219,6 +219,7 @@ const AddPromt = () => {
                     id="keyWords"
                     placeholder="select category"
                     onChange={formik.handleChange}
+                    defaultValue={options[0].value}
                     onBlur={formik.handleBlur}
                     value={formik.values.category}
                     name="category"
@@ -297,7 +298,9 @@ const AddPromt = () => {
                     id="userId"
                     type="text"
                     placeholder="If you have an author ID, please enter it here."
-                    onChange={handleInputChange}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.userId}
                   />
                 </div>
                 {/* <div className="mb-4 md:flex md:justify-between">
