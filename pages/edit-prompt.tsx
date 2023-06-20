@@ -35,7 +35,6 @@ const options = [
   { label: "Website", value: "website" },
   { label: "Academic", value: "academic" },
   { label: "Other", value: "other" },
-  
 ];
 
 const EditPromt = () => {
@@ -63,7 +62,7 @@ const EditPromt = () => {
   useEffect(() => {
     const authorId = cookies.authorId;
     const prompts = publicRequest
-      .get("/user/get-promptbyid/" + authorId)
+      .get("/user/get-promptbyid/" + author)
       .then((res) => {
         setPrompt(res.data);
       })
@@ -79,7 +78,6 @@ const EditPromt = () => {
       prompt: prompt?.prompt,
       designation: prompt?.author?.designation,
     });
-
   }, [prompt]);
 
   const handleSubmit = async (values: FormValues) => {
@@ -112,7 +110,7 @@ const EditPromt = () => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema,
-    enableReinitialize:true,
+    enableReinitialize: true,
     onSubmit: handleSubmit,
   });
 
@@ -155,29 +153,28 @@ const EditPromt = () => {
                   )}
                 </div>
                 <div className="mb-4">
-                    <label
-                      className="block mb-2 text-sm font-bold text-gray-700"
-                      htmlFor="designation"
-                    >
-                      Designation
-                    </label>
-                    <input
-                      name="designation"
-                      className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                      id="designation"
-                      type="text"
-                      placeholder="Designation"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.designation}
-                    />
-                    {formik.touched.designation &&
-                      formik.errors.designation && (
-                        <p className="text-red-500 text-xs italic">
-                          {formik.errors.designation}
-                        </p>
-                      )}
-                  </div>
+                  <label
+                    className="block mb-2 text-sm font-bold text-gray-700"
+                    htmlFor="designation"
+                  >
+                    Designation
+                  </label>
+                  <input
+                    name="designation"
+                    className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    id="designation"
+                    type="text"
+                    placeholder="Designation"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.designation}
+                  />
+                  {formik.touched.designation && formik.errors.designation && (
+                    <p className="text-red-500 text-xs italic">
+                      {formik.errors.designation}
+                    </p>
+                  )}
+                </div>
                 <div className="mb-4">
                   <label
                     className="block mb-2 text-sm font-bold text-gray-700"
