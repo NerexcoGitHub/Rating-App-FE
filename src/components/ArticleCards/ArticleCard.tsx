@@ -19,7 +19,7 @@ import { useCookies } from "react-cookie";
 import { publicRequest } from "../../../config/axiosRequest";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 interface IProp {
   article: any;
@@ -48,6 +48,14 @@ const ArticleCard = ({ article, path }: IProp) => {
     }
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setCopyState(false);
+    }, 1000);
+
+  }, [copyState]);
+
+  
   const handleRate = async (value: number | null) => {
     setCurrentRate({
       rating: value as number,
@@ -110,11 +118,15 @@ const ArticleCard = ({ article, path }: IProp) => {
               <p className={"font-normal text-xs pt-3 mb-0 md:mb-3"}>
                 {article?.createdAt?.slice(0, 10)}
               </p>
-              <CopyToClipboard  text={article?.prompt} onCopy={() => setCopyState(true)}>
-                {
-                  copyState ? <CheckCircleOutlineIcon className='text-green-500 '/> : <ContentCopyIcon className='hover:text-slate-400'/>
-
-                }
+              <CopyToClipboard
+                text={article?.prompt}
+                onCopy={() => setCopyState(true)}
+              >
+                {copyState ? (
+                  <CheckCircleOutlineIcon className="text-green-500 " />
+                ) : (
+                  <ContentCopyIcon className="hover:text-slate-400" />
+                )}
               </CopyToClipboard>
             </div>
 

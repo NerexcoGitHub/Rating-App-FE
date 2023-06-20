@@ -29,7 +29,7 @@ const Hero = ({
   return (
     <div className="max-w-screen-xl mt-7 px-8 xl:px-16 mx-auto" id="about">
       <motion.div
-        className="flex flex-col lg:flex-row justify-between items-center lg:items-start lg:space-x-8 space-y-8 lg:space-y-0 mt-20"
+        className="flex flex-col-reverse lg:flex-row justify-between items-center lg:items-start lg:space-x-8 space-y-8 lg:space-y-0 mt-20"
         variants={scrollAnimation}
       >
         <div className="flex flex-col justify-center items-start row-start-2 sm:row-start-1">
