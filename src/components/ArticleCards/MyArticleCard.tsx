@@ -40,7 +40,7 @@ const MyArticleCard = ({ article, path }: IProp) => {
 
   return (
     <div className={"w-full lg:w-1/3 md:w-1/2 md:px-[15px] px-2 mb-[30px]"}>
-      <LinkTo href={"/edit-prompt?author="+article._id} passHref className="">
+      <LinkTo href={"/edit-prompt?author=" + article._id} passHref className="">
         <div
           className={combineClasses(
             classes.article_card,
@@ -91,7 +91,25 @@ const MyArticleCard = ({ article, path }: IProp) => {
               <ArticleTags tags={article.inputParams} />
             </div>
           </div>
-          <ArticleRating rating={article?.rating} />
+          <ArticleRating
+            rating={article?.rating}
+            count={article?.ratecount}
+            sum={article?.ratesum}
+            usercount={article?.ratingList?.length || 0}
+          />
+          <button
+            className={`text-[13px] rounded-md w-20 ml-5 mt-2 p-2 text-white ${
+              article?.status === "Approved"
+                ? "bg-green-500"
+                : article?.status === "Pending"
+                ? "bg-yellow-500"
+                : article?.status === "Rejected"
+                ? "bg-red-500"
+                : ""
+            }`}
+          >
+            {article?.status}
+          </button>
           <div
             className={combineClasses(
               classes.article_card_footer,

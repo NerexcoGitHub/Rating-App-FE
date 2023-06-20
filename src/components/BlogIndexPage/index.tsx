@@ -15,7 +15,6 @@ import SearchForm from "./SearchComponent";
 const BlogIndexPage = ({
   articlesPerPage = 3,
 }: {
-
   articlesPerPage?: number;
 }) => {
   // const router = useRouter();
@@ -38,12 +37,16 @@ const BlogIndexPage = ({
   //       : SORTED_ARTICLES_BY_DATE
   //   );
   // }, [category, author]);
+ function createInitialObject() {
+    const initObject: { [key: string]: string | number } = {};
+    PROMPT_SELECT.forEach((item) => {
+      initObject[item.name] = "0";
+    });
+    initObject["search"] = "";
 
-  const initObject: { [key: string]: string | number } = {};
-  PROMPT_SELECT.forEach((item) => {
-    initObject[item.name] = "0";
-  });
-  initObject["search"] = "";
+    return initObject;
+  }
+  const initObject= createInitialObject();
 
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -58,9 +61,8 @@ const BlogIndexPage = ({
     setPageCount(Math.ceil(prompts.length / articlesPerPage));
   }, [itemOffset, articlesPerPage, prompts]);
 
- 
   useEffect(() => {
-     publicRequest
+    publicRequest
       .post("/user/get-prompts", filterOption)
       .then((res) => {
         console.log(res.data);
@@ -81,20 +83,19 @@ const BlogIndexPage = ({
     setFilterOption({ ...filterOption, [name]: value });
   };
 
-  const handleSearchChange = (value:string) => {
+  const handleSearchChange = (value: string) => {
     setFilterOption({ ...filterOption, ["search"]: value });
   };
 
   console.log(filterOption);
   return (
-    <PageLayout home>
-      <div
-        className={combineClasses(
-          "container mt-10 md:pt-0 px-0 md:px-3",
-          "pt-14"
-        )}
-      >
-        {/* {category || author ? (
+    <div
+      className={combineClasses(
+        "container mt-10 md:pt-0 px-0 md:px-3",
+        "pt-14"
+      )}
+    >
+      {/* {category || author ? (
           <h1
             className="px-2 mb-[30px] text-[45px] font-bold"
             style={{ textTransform: "capitalize" }}
@@ -103,7 +104,7 @@ const BlogIndexPage = ({
             <hr className="mt-[10px]" />
           </h1>
         ) : null} */}
-
+      <div className="flex justify-between">
         <div className="flex flex-wrap">
           {PROMPT_SELECT.map(
             (
@@ -123,32 +124,35 @@ const BlogIndexPage = ({
               );
             }
           )}
-
-       
         </div>
-      < SearchForm handleSearchChange={handleSearchChange}/>
-        <hr className="mt-[5px] mb-[15px]" />
-
-        <div className="flex flex-wrap">
-          {currentItems.length > 0
-            ? (currentItems as any).map((each: any, i: any) => (
-                <ArticleCard article={each} path={"test"} key={i} />
-              ))
-            : null}
-        </div>
-
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel={<AiFillCaretRight />}
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={1}
-          pageCount={pageCount}
-          previousLabel={<AiFillCaretLeft />}
-          containerClassName="pagination"
-          activeClassName="active"
-        />
+        <button onClick={()=>{
+          setFilterOption(createInitialObject())
+        }} className="bg-blue-500 hover:bg-blue-700 text-white text-center font-bold text-[10px] sm:text-[15px] mt-9 mr-1 rounded w-20 h-9">
+          Reset
+        </button>
       </div>
-    </PageLayout>
+      <SearchForm handleSearchChange={handleSearchChange} />
+      <hr className="mt-[5px] mb-[15px]" />
+
+      <div className="flex flex-wrap">
+        {currentItems.length > 0
+          ? (currentItems as any).map((each: any, i: any) => (
+              <ArticleCard article={each} path={"test"} key={i} />
+            ))
+          : null}
+      </div>
+
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel={<AiFillCaretRight />}
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={1}
+        pageCount={pageCount}
+        previousLabel={<AiFillCaretLeft />}
+        containerClassName="pagination"
+        activeClassName="active"
+      />
+    </div>
   );
 };
 

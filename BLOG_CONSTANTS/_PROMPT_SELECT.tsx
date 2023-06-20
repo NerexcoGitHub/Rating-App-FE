@@ -8,14 +8,14 @@ export const PROMPT_SELECT:IPromptSelect[]  = [
   {
     label: "Catergory",
     options: [
-    {"all": 0},
-    {"blogs and articles": 'blogsAndArticles'},
-    {"ads and marketing": 'adsAndMarketing'},
-    {"e-commerce": 'eCommerce'},
-    {"social media": 'socialMedia'},
-    {"website": 'website'},
-    {"academic": 'academic'},
-    {"other": 'other'},
+    {"All": 0},
+    {"Blogs and articles": 'blogsAndArticles'},
+    {"Ads and marketing": 'adsAndMarketing'},
+    {"E-commerce": 'eCommerce'},
+    {"Social media": 'socialMedia'},
+    {"Website": 'website'},
+    {"Academic": 'academic'},
+    {"Other": 'other'},
         
     ],
     name: "category",
@@ -23,18 +23,18 @@ export const PROMPT_SELECT:IPromptSelect[]  = [
     {
     label: "Update",
     options: [
-        {"all": 0},
-        {"newest": 1},
-        {"last week": 2},
-        {"last month": 3},
-        {"last year": 4},
+        {"All": 0},
+        {"Newest": 1},
+        {"Last week": 2},
+        {"Last month": 3},
+        {"Last year": 4},
     ],
     name: "update",
     },
     {
     label: "Rating",
     options: [
-        {"all": 0},
+        {"All": 0},
         {"5 stars": 5},
         {"4 stars": 4},
         {"3 stars": 3},

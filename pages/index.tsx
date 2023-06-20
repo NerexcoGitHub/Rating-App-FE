@@ -4,6 +4,7 @@ import { DEFAULT_SEO } from "../BLOG_CONSTANTS/_BLOG_SETUP";
 import FeaturedArticleSection from "../src/components/Misc/FeaturedArticleSection";
 import HomeNonFeatureArticles from "../src/components/Misc/HomeNonFeatureAricles";
 import Hero from "../src/components/Hero";
+import BlogIndexPage from "../src/components/BlogIndexPage";
 
 const Home = () => {
   return (
@@ -18,7 +19,7 @@ const Home = () => {
             everything else…
           </h1>
           <hr className="border-1 mb-5 w-[98%] mx-auto" />
-           <HomeNonFeatureArticles />
+          <BlogIndexPage articlesPerPage={6} />;
         </div>
       </div>
       

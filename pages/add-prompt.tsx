@@ -28,14 +28,14 @@ interface FormValues {
 }
 
 const options = [
-  { label: "all", value: "all" },
-  { label: "blogs and articles", value: "blogsAndArticles" },
-  { label: "ads and marketing", value: "adsAndMarketing" },
-  { label: "e-commerce", value: "eCommerce" },
-  { label: "social media", value: "socialMedia" },
-  { label: "website", value: "website" },
-  { label: "academic", value: "academic" },
-  { label: "other", value: "other" },
+  { label: "All", value: "all" },
+  { label: "Blogs and articles", value: "blogsAndArticles" },
+  { label: "Ads and marketing", value: "adsAndMarketing" },
+  { label: "E-commerce", value: "eCommerce" },
+  { label: "Social media", value: "socialMedia" },
+  { label: "Website", value: "website" },
+  { label: "Academic", value: "academic" },
+  { label: "Other", value: "other" },
 ];
 
 const AddPromt = () => {
@@ -85,7 +85,7 @@ const AddPromt = () => {
       designation: "",
       title: "",
       description: "",
-      category: "",
+      category: "all",
       inputParams: "",
       prompt: "",
       userId: "",
