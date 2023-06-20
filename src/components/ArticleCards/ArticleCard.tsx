@@ -17,6 +17,8 @@ import { Modal, Rating } from "@mui/material";
 import AdaptationPromptModel from "../adaptationPromptModel";
 import { useCookies } from "react-cookie";
 import { publicRequest } from "../../../config/axiosRequest";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 interface IProp {
   article: any;
@@ -26,7 +28,11 @@ interface IProp {
 const ArticleCard = ({ article, path }: IProp) => {
   const [openPromtModel, setOpenPromtModel] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(["deviceId"]);
-  const [currentRate, setCurrentRate] = useState<number>(0);
+  const [currentRate, setCurrentRate] = useState({
+    rating: 0,
+    id: "",
+  });
+  const [copyState, setCopyState] = useState(false);
 
   const handleOpenPromtModel = () => {
     setOpenPromtModel(!openPromtModel);
@@ -42,7 +48,10 @@ const ArticleCard = ({ article, path }: IProp) => {
   }, []);
 
   const handleRate = async (value: number | null) => {
-    setCurrentRate(value as number);
+    setCurrentRate({
+      rating: value as number,
+      id: article._id,
+    });
     await publicRequest
       .post(`/user/rate-prompt`, {
         promptId: article._id,
@@ -96,9 +105,14 @@ const ArticleCard = ({ article, path }: IProp) => {
           </div> */}
 
           <div className={"d-block px-[15px] py-0"}>
-            <p className={"font-normal text-xs pt-3 mb-0 md:mb-3"}>
-              {article?.createdAt?.slice(0, 10)}
-            </p>
+            <div className={"flex items-center justify-between"}>
+              <p className={"font-normal text-xs pt-3 mb-0 md:mb-3"}>
+                {article?.createdAt?.slice(0, 10)}
+              </p>
+              <CopyToClipboard  text={article?.prompt} onCopy={() => setCopyState(true)}>
+                <ContentCopyIcon className='hover:text-slate-400'/>
+              </CopyToClipboard>
+            </div>
 
             <h1
               className={
@@ -143,11 +157,14 @@ const ArticleCard = ({ article, path }: IProp) => {
             <Rating
               size="large"
               name="size-large"
-              defaultValue={currentRate}
+              defaultValue={0}
+              value={currentRate.id === article._id ? currentRate.rating : 0}
               onChange={(event, newValue) => {
                 handleRate(newValue);
               }}
-              readOnly={currentRate !== 0}
+              readOnly={
+                currentRate.rating !== 0 && currentRate.id === article._id
+              }
             />
           </div>
         )}
