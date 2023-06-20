@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import getScrollAnimation from "../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "./ScrollAnimationWrapper";
 
-
 const Hero = ({
   listUser = [
     {
@@ -24,19 +23,16 @@ const Hero = ({
       icon: "/assets/Icon/bx_bxs-server.svg",
     },
   ],
-
-
 }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
-
 
   return (
     <div className="max-w-screen-xl mt-7 px-8 xl:px-16 mx-auto" id="about">
       <motion.div
-        className="grid grid-flow-row sm:grid-flow-col grid-rows-2 md:grid-rows-1 sm:grid-cols-2 gap-8 py-6 sm:py-16"
+        className="flex flex-col lg:flex-row justify-between items-center lg:items-start lg:space-x-8 space-y-8 lg:space-y-0 mt-20"
         variants={scrollAnimation}
       >
-        <div className=" flex flex-col justify-center items-start row-start-2 sm:row-start-1">
+        <div className="flex flex-col justify-center items-start row-start-2 sm:row-start-1">
           <h1 className="text-3xl lg:text-4xl xl:text-5xl font-medium text-black-600 leading-normal">
             Solve Your Small Business Problems with 1-Click{" "}
             <strong>Prompts</strong>.
@@ -48,11 +44,13 @@ const Hero = ({
           </p>
           <ButtonPrimary />
         </div>
+
         <div className="flex w-full">
           <motion.div className="h-full w-full" variants={scrollAnimation}>
             <Image
               src="/assets/Illustration3.png"
               alt="VPN Illustrasi"
+              objectFit="contain"
               quality={100}
               width={612}
               height={399}
@@ -63,7 +61,7 @@ const Hero = ({
       </motion.div>
 
       <div className="relative w-full flex">
-        <ScrollAnimationWrapper className="rounded-lg w-full grid grid-flow-row sm:grid-flow-row grid-cols-1 sm:grid-cols-3 py-9 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-gray-100 bg-white-500 z-10">
+        <ScrollAnimationWrapper className="rounded-lg w-full grid grid-flow-row sm:grid-flow-row grid-cols-1 sm:grid-cols-3 py-9 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-gray-100 bg-white-500 z-0">
           {listUser.map((listUsers, index) => (
             <motion.div
               className="flex items-center justify-start sm:justify-center py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0"

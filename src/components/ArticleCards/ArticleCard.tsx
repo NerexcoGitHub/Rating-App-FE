@@ -19,6 +19,7 @@ import { useCookies } from "react-cookie";
 import { publicRequest } from "../../../config/axiosRequest";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 interface IProp {
   article: any;
@@ -110,7 +111,10 @@ const ArticleCard = ({ article, path }: IProp) => {
                 {article?.createdAt?.slice(0, 10)}
               </p>
               <CopyToClipboard  text={article?.prompt} onCopy={() => setCopyState(true)}>
-                <ContentCopyIcon className='hover:text-slate-400'/>
+                {
+                  copyState ? <CheckCircleOutlineIcon className='text-green-500 '/> : <ContentCopyIcon className='hover:text-slate-400'/>
+
+                }
               </CopyToClipboard>
             </div>
 

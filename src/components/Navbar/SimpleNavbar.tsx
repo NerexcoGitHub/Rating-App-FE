@@ -30,7 +30,7 @@ const SimpleNavbar = ({
         "px-2"
       )}
     >
-      <div className="flex items-center">
+      <div className="flex items-center ml-4">
        
 
         <Link href="/" passHref>
