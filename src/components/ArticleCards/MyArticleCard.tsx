@@ -127,7 +127,7 @@ const MyArticleCard = ({ article, path }: IProp) => {
                   "text-sm font-medium"
                 )}
               >
-                {article.author.userName} (designation)
+                {article.author.userName} ({article?.author?.designation})
               </div>
             </div>
           </div>

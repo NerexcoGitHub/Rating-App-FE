@@ -88,6 +88,8 @@
     cursor: pointer;
 }
 
+
+
 // nav sidebar
 .nav_sidebar_wrapper {
     position: fixed;
@@ -97,7 +99,7 @@
     height: 100vh;
     max-width: 300px;
     @apply shadow-md transition-transform;
-    transform: translateX(-110%);
+    transform: translateX(110%);
     z-index: 13;
     padding: 20px 15px 10px;
     overflow-y: auto;
@@ -121,5 +123,16 @@
 
     @include mobile {
         max-width: 380px;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .mobileBurgerToggle {
+        display: none;
+    }
+
+    .nav_sidebar_wrapper {
+        display: none;
     }
 }

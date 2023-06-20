@@ -131,7 +131,7 @@ const Navbar = () => {
         )}
       </nav>
 
-     <NavSidebar
+      <NavSidebar
         openSidebar={openSidebar}
         closeNavSidebar={() => setOpenSidebar(false)}
         navSetup={PRIMARY_NAV}
@@ -142,7 +142,7 @@ const Navbar = () => {
       <SocialShareModal
         closeModal={() => setOpenShareModal(false)}
         openShareModal={openShareModal}
-      /> 
+      />
     </>
   );
 };
