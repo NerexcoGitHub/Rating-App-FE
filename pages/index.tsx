@@ -13,7 +13,7 @@ const Home = () => {
       <div className="container mx-auto lg:px-[15px] px-0">
         <div className={"flex flex-wrap"}>
           <FeaturedArticleSection />
-          <h1 className="px-3 w-full mb-5 text-xl md:text-3xl font-medium">
+          <h1 className="px-3 w-full mb-5 mt-5 md:mt-0 text-md md:text-3xl font-medium text-center">
             You know your small business. Use prompts to quickly finish
             everything else…
           </h1>

@@ -91,8 +91,8 @@ const BlogIndexPage = ({
   return (
     <div
       className={combineClasses(
-        "container mt-10 md:pt-0 px-0 md:px-3",
-        "pt-14"
+        "container mt-2 md:mt-6 md:pt-0 px-0 md:px-3",
+        "pt-0"
       )}
     >
       {/* {category || author ? (
