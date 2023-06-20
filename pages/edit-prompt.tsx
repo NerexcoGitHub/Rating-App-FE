@@ -23,17 +23,19 @@ interface FormValues {
   category: string;
   inputParams: string;
   prompt: string;
+  designation: string;
 }
 
 const options = [
-  { label: "all", value: "all" },
-  { label: "blogs and articles", value: "blogsAndArticles" },
-  { label: "ads and marketing", value: "adsAndMarketing" },
-  { label: "e-commerce", value: "eCommerce" },
-  { label: "social media", value: "socialMedia" },
-  { label: "website", value: "website" },
-  { label: "academic", value: "academic" },
-  { label: "other", value: "other" },
+  { label: "All", value: "all" },
+  { label: "Blogs and articles", value: "blogsAndArticles" },
+  { label: "Ads and marketing", value: "adsAndMarketing" },
+  { label: "E-commerce", value: "eCommerce" },
+  { label: "Social media", value: "socialMedia" },
+  { label: "Website", value: "website" },
+  { label: "Academic", value: "academic" },
+  { label: "Other", value: "other" },
+  
 ];
 
 const EditPromt = () => {
@@ -75,7 +77,9 @@ const EditPromt = () => {
       category: prompt?.category,
       inputParams: prompt?.inputParams,
       prompt: prompt?.prompt,
+      designation: prompt?.author?.designation,
     });
+
   }, [prompt]);
 
   const handleSubmit = async (values: FormValues) => {
@@ -99,6 +103,7 @@ const EditPromt = () => {
   const validationSchema = Yup.object({
     title: Yup.string().optional(),
     description: Yup.string().optional(),
+    designation: Yup.string().optional(),
     category: Yup.string().optional(),
     inputParams: Yup.string().optional(),
     prompt: Yup.string().optional(),
@@ -150,6 +155,30 @@ const EditPromt = () => {
                   )}
                 </div>
                 <div className="mb-4">
+                    <label
+                      className="block mb-2 text-sm font-bold text-gray-700"
+                      htmlFor="designation"
+                    >
+                      Designation
+                    </label>
+                    <input
+                      name="designation"
+                      className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                      id="designation"
+                      type="text"
+                      placeholder="Designation"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.designation}
+                    />
+                    {formik.touched.designation &&
+                      formik.errors.designation && (
+                        <p className="text-red-500 text-xs italic">
+                          {formik.errors.designation}
+                        </p>
+                      )}
+                  </div>
+                <div className="mb-4">
                   <label
                     className="block mb-2 text-sm font-bold text-gray-700"
                     htmlFor="email"
@@ -161,7 +190,7 @@ const EditPromt = () => {
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="description"
                     type="text"
-                    placeholder={prompt.description}
+                    placeholder={prompt?.description}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.description}
@@ -182,7 +211,7 @@ const EditPromt = () => {
                   <select
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="category"
-                    placeholder={prompt.category}
+                    placeholder={prompt?.category}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.category}
@@ -213,7 +242,7 @@ const EditPromt = () => {
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="inputParameters"
                     type="text"
-                    placeholder={prompt.inputParams}
+                    placeholder={prompt?.inputParams}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.inputParams}
@@ -236,7 +265,7 @@ const EditPromt = () => {
                     name="prompt"
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="prompt"
-                    placeholder={prompt.prompt}
+                    placeholder={prompt?.prompt}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.prompt}
