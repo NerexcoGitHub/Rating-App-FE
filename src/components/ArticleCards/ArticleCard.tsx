@@ -196,14 +196,14 @@ const ArticleCard = ({ article, path }: IProp) => {
               className="w-[40px] h-[40px] mr-3 text-xl"
             />
             <LinkTo
-              href={"/blog?author=" + article.author.userName}
+              href={"/blog?author=" + article?.author?.userName}
               passHref
               className={combineClasses(
                 classes.author_name,
                 "text-sm font-medium"
               )}
             >
-              {article.author.userName} ({article?.author?.designation})
+              {article.author?.userName} ({article?.author?.designation})
             </LinkTo>
           </div>
         </div>

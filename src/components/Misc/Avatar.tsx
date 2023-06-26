@@ -11,7 +11,7 @@ const Avatar = ({ author, className }: { author: any, className?: string }) => {
           width="100%" />
       ) : (
         <p className="text-center font-medium text-white">
-          {author.userName[0]}
+          {author?.userName[0]}
         </p>
       )}
     </div>
