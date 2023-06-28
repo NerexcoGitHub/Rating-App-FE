@@ -20,6 +20,7 @@ import { publicRequest } from "../../../config/axiosRequest";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import Link from "next/link";
 
 interface IProp {
   article: any;
@@ -52,10 +53,8 @@ const ArticleCard = ({ article, path }: IProp) => {
     setTimeout(() => {
       setCopyState(false);
     }, 1000);
-
   }, [copyState]);
 
-  
   const handleRate = async (value: number | null) => {
     setCurrentRate({
       rating: value as number,
@@ -129,14 +128,15 @@ const ArticleCard = ({ article, path }: IProp) => {
                 )}
               </CopyToClipboard>
             </div>
-
-            <h1
-              className={
-                "text-[18px] font-bold cursor-pointer tracking-wide text-blue-600"
-              }
-            >
-              {article?.title}
-            </h1>
+            <Link href={`/prompt/${article._id}`}>
+              <h1
+                className={
+                  "text-[18px] font-bold cursor-pointer tracking-wide text-blue-600"
+                }
+              >
+                {article?.title}
+              </h1>
+            </Link>
 
             <p
               className={combineClasses(
