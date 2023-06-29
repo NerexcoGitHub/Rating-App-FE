@@ -21,6 +21,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface IProp {
   article: any;
@@ -30,6 +31,7 @@ interface IProp {
 const ArticleCard = ({ article, path }: IProp) => {
   const [openPromtModel, setOpenPromtModel] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(["deviceId"]);
+  let router = useRouter();
   const [currentRate, setCurrentRate] = useState({
     rating: 0,
     id: "",
@@ -92,6 +94,10 @@ const ArticleCard = ({ article, path }: IProp) => {
   //   return `${origin}${src}?w=${width}&q=${quality || 75}`;
   // };
 
+  const handleClick = (event: any) => {
+    router.push(`/prompt/${article._id}`);
+  };
+
   return (
     <div className={"w-full lg:w-1/3 md:w-1/2 md:px-[15px] px-2 mb-[30px] "}>
       <div
@@ -100,7 +106,7 @@ const ArticleCard = ({ article, path }: IProp) => {
           "border-b-[5px] border-blue-500 dark:bg-slate-800 dark:text-white dark:drop-shadow-lg flex flex-col justify-between"
         )}
       >
-        <div onClick={handleOpenPromtModel}>
+        <div onClick={handleClick}>
           {/* <div className={"rounded-t-[4px] overflow-hidden h-[200px] relative"}>
             <Image
               src={transformImagePaths(article.thumbnail)}
