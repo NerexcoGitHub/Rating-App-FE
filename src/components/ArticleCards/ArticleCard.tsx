@@ -106,7 +106,7 @@ const ArticleCard = ({ article, path }: IProp) => {
           "border-b-[5px] border-blue-500 dark:bg-slate-800 dark:text-white dark:drop-shadow-lg flex flex-col justify-between"
         )}
       >
-        <div onClick={handleClick}>
+        <div onClick={handleClick} className="cursor-pointer">
           {/* <div className={"rounded-t-[4px] overflow-hidden h-[200px] relative"}>
             <Image
               src={transformImagePaths(article.thumbnail)}
@@ -123,16 +123,6 @@ const ArticleCard = ({ article, path }: IProp) => {
               <p className={"font-normal text-xs pt-3 mb-0 md:mb-3"}>
                 {article?.createdAt?.slice(0, 10)}
               </p>
-              <CopyToClipboard
-                text={article?.prompt}
-                onCopy={() => setCopyState(true)}
-              >
-                {copyState ? (
-                  <CheckCircleOutlineIcon className="text-green-500 " />
-                ) : (
-                  <ContentCopyIcon className="hover:text-slate-400" />
-                )}
-              </CopyToClipboard>
             </div>
             <Link href={`/prompt/${article._id}`}>
               <h1
@@ -161,56 +151,70 @@ const ArticleCard = ({ article, path }: IProp) => {
             <ArticleTags tags={article.inputParams} />
           </div>
         </div>
-        <ArticleRating
-          rating={article?.rating}
-          count={article?.ratecount}
-          sum={article?.ratesum}
-          usercount={article?.ratingList?.length || 0}
-        />
-        {checkIfRated(article?.ratingList) ? (
-          <div className="m-4">
-            <p className="text-[11px] text-red-500">
-              You have already rated this prompt
-            </p>
-          </div>
-        ) : (
-          <div className="pl-5">
-            <p className="text-[15px] text-grey-500">Rate this Prompt</p>
-            <Rating
-              size="large"
-              name="size-large"
-              defaultValue={0}
-              value={currentRate.id === article._id ? currentRate.rating : 0}
-              onChange={(event, newValue) => {
-                handleRate(newValue);
-              }}
-              readOnly={
-                currentRate.rating !== 0 && currentRate.id === article._id
-              }
-            />
-          </div>
-        )}
+        <div onClick={handleClick} className="cursor-pointer">
+          <ArticleRating
+            rating={article?.rating}
+            count={article?.ratecount}
+            sum={article?.ratesum}
+            usercount={article?.ratingList?.length || 0}
+          />
+          {checkIfRated(article?.ratingList) ? (
+            <div className="m-4">
+              <p className="text-[11px] text-red-500">
+                You have already rated this prompt
+              </p>
+            </div>
+          ) : (
+            <div className="pl-5">
+              <p className="text-[15px] text-grey-500">Rate this Prompt</p>
+              <Rating
+                size="large"
+                name="size-large"
+                defaultValue={0}
+                value={currentRate.id === article._id ? currentRate.rating : 0}
+                onChange={(event, newValue) => {
+                  handleRate(newValue);
+                }}
+                readOnly={
+                  currentRate.rating !== 0 && currentRate.id === article._id
+                }
+              />
+            </div>
+          )}
+        </div>
         <div
           className={combineClasses(
             classes.article_card_footer,
             "mt-4 mb-3 items-center px-3"
           )}
         >
-          <div className={"flex items-center"}>
-            <Avatar
-              author={article.author}
-              className="w-[40px] h-[40px] mr-3 text-xl"
-            />
-            <LinkTo
-              href={"/blog?author=" + article?.author?.userName}
-              passHref
-              className={combineClasses(
-                classes.author_name,
-                "text-sm font-medium"
-              )}
+          <div className={"flex items-center justify-between"}>
+            <div className={"flex items-center"}>
+              <Avatar
+                author={article.author}
+                className="w-[40px] h-[40px] mr-3 text-xl"
+              />
+              <LinkTo
+                href={""}
+                passHref
+                className={combineClasses(
+                  classes.author_name,
+                  "text-sm font-medium"
+                )}
+              >
+                {article.author?.userName} ({article?.author?.designation})
+              </LinkTo>
+            </div>
+            <CopyToClipboard
+              text={article?.prompt}
+              onCopy={() => setCopyState(true)}
             >
-              {article.author?.userName} ({article?.author?.designation})
-            </LinkTo>
+              {copyState ? (
+                <CheckCircleOutlineIcon className="text-green-500 " />
+              ) : (
+                <ContentCopyIcon className="hover:text-slate-400" />
+              )}
+            </CopyToClipboard>
           </div>
         </div>
       </div>
