@@ -206,7 +206,7 @@ const ArticleCard = ({ article, path }: IProp) => {
               </LinkTo>
             </div>
             <CopyToClipboard
-              text={article?.prompt}
+              text={`http://localhost:3000/prompt/${article._id}`}
               onCopy={() => setCopyState(true)}
             >
               {copyState ? (
