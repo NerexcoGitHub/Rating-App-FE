@@ -206,7 +206,7 @@ const ArticleCard = ({ article, path }: IProp) => {
               </LinkTo>
             </div>
             <CopyToClipboard
-              text={`http://localhost:3000/prompt/${article._id}`}
+              text={`https://rating-app-fe-theta.vercel.app/prompt/${article._id}`}
               onCopy={() => setCopyState(true)}
             >
               {copyState ? (
