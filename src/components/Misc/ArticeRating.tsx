@@ -14,9 +14,9 @@ const ArticleRating = (props:any) => {
         <span>{rate.toFixed(1).replace(/\.0$/, '')} out 5</span>
       </span>
 
-      <span className="text-xs leading-6 text-slate-400">
+      {/* <span className="text-xs leading-6 text-slate-400">
         based on {props.usercount} user ratings
-      </span>
+      </span> */}
     </div>
   );
 };
