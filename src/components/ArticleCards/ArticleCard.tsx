@@ -13,7 +13,7 @@ import Image from "next/image";
 import ArticleRating from "../Misc/ArticeRating";
 import RatingModel from "../Rating";
 import { useEffect, useState } from "react";
-import { Modal, Rating } from "@mui/material";
+import { Box, Breadcrumbs, Modal, Rating, Typography } from "@mui/material";
 import AdaptationPromptModel from "../adaptationPromptModel";
 import { useCookies } from "react-cookie";
 import { publicRequest } from "../../../config/axiosRequest";
@@ -143,6 +143,12 @@ const ArticleCard = ({ article, path }: IProp) => {
               {article?.description?.slice(0, 100)} ...
             </p>
 
+            <div className={"flex items-center justify-center m-2"}>
+              <Breadcrumbs maxItems={2}>
+                <Typography color="textPrimary">{article?.category}</Typography>
+                <Typography color="textPrimary">{article?.subCategories}</Typography>
+              </Breadcrumbs>
+            </div>
             {/* <h1
               className={"text-[22px] font-bold cursor-pointer tracking-wide "}
             >

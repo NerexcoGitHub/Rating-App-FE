@@ -15,7 +15,6 @@ import { errToast } from "../src/components/ToastComponent/ErrToast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-
 interface FormValues {
   author: string;
   designation: string;
@@ -38,6 +37,17 @@ const options = [
   { label: "Other", value: "other" },
 ];
 
+const subcategories = [
+  { label: "All", value: "all" },
+  { label: "Technology", value: "technology" },
+  { label: "Health", value: "health" },
+  { label: "Travel", value: "travel" },
+  { label: "Fashion", value: "fashion" },
+  { label: "Digital Marketing", value: "digitalMarketing" },
+  { label: "Print Advertising", value: "printAdvertising" },
+  { label: "Social Media Marketing", value: "socialMediaMarketing" },
+];
+
 const AddPromt = () => {
   const PAGE_SEO: iSEO = {
     title: "Contact Us",
@@ -51,10 +61,7 @@ const AddPromt = () => {
     userId: "",
   });
 
-
-
   const handleSubmit = async (values: FormValues) => {
-   
     console.log(values);
     const res = publicRequest
       .post("/user/add-prompt", values)
@@ -74,6 +81,7 @@ const AddPromt = () => {
     title: Yup.string().required("Prompt Title is required"),
     description: Yup.string().required("Description is required"),
     category: Yup.string().required("Category is required"),
+    subCategories: Yup.string().required("Sub Category is required"),
     inputParams: Yup.string().required("Input Parameters are required"),
     prompt: Yup.string().required("Prompt is required"),
     userId: Yup.string().optional(),
@@ -86,6 +94,7 @@ const AddPromt = () => {
       title: "",
       description: "",
       category: "all",
+      subCategories: "all",
       inputParams: "",
       prompt: "",
       userId: "",
@@ -109,7 +118,10 @@ const AddPromt = () => {
 
             <div className="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
               <h3 className="pt-4 text-2xl text-center">Create a Prompt!</h3>
-              <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded" onSubmit={formik.handleSubmit}>
+              <form
+                className="px-8 pt-6 pb-8 mb-4 bg-white rounded"
+                onSubmit={formik.handleSubmit}
+              >
                 <div className="mb-4 md:flex md:justify-between">
                   <div className="mb-4 md:mr-2 md:mb-0">
                     <label
@@ -222,16 +234,45 @@ const AddPromt = () => {
                     value={formik.values.category}
                     name="category"
                   >
-                    {
-                      options.map((option) => (
-                        <option value={option.value} key={option.value}>{option.label}</option>
-                      )
-                      )
-                    }
+                    {options.map((option) => (
+                      <option value={option.value} key={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
                   </select>
                   {formik.touched.category && formik.errors.category && (
                     <p className="text-red-500 text-xs italic">
                       {formik.errors.category}
+                    </p>
+                  )}
+                </div>
+
+                <div className="mb-4">
+                  <label
+                    className="block mb-2 text-sm font-bold text-gray-700"
+                    htmlFor="subCategories"
+                  >
+                    Sub-Category
+                  </label>
+                  <select
+                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    id="subCategories"
+                    placeholder="select sub-category"
+                    onChange={formik.handleChange}
+                    defaultValue={options[0].value}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.subCategories}
+                    name="subCategories"
+                  >
+                    {subcategories?.map((option) => (
+                      <option value={option.value} key={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                  {formik.touched.subCategories && formik.errors.subCategories && (
+                    <p className="text-red-500 text-xs italic">
+                      {formik.errors.subCategories}
                     </p>
                   )}
                 </div>
@@ -339,7 +380,6 @@ const AddPromt = () => {
                     className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
                     type="submit"
                     disabled={formik.isSubmitting || !formik.isValid}
-                    
                   >
                     Save Prompt
                   </button>
