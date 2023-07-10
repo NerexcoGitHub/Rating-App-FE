@@ -28,7 +28,7 @@ const Prompt = () => {
   return (
     <PageLayout home>
       <PromptTop prompt={prompt}/>
-      <PromptAction prompt={prompt}/>
+      {/* <PromptAction prompt={prompt}/> */}
     </PageLayout>
   );
 };

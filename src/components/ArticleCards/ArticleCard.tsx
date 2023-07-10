@@ -29,7 +29,7 @@ interface IProp {
 }
 
 const ArticleCard = ({ article, path }: IProp) => {
-  const [openPromtModel, setOpenPromtModel] = useState(false);
+
   const [cookies, setCookie, removeCookie] = useCookies(["deviceId"]);
   let router = useRouter();
   const [currentRate, setCurrentRate] = useState({
@@ -38,9 +38,7 @@ const ArticleCard = ({ article, path }: IProp) => {
   });
   const [copyState, setCopyState] = useState(false);
 
-  const handleOpenPromtModel = () => {
-    setOpenPromtModel(!openPromtModel);
-  };
+  
 
   useEffect(() => {
     if (!cookies.deviceId) {
