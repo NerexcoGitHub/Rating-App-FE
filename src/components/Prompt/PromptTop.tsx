@@ -50,7 +50,7 @@ const PromptTop = (props: any) => {
   const handleCreatePrompt = async () => {
     const modifiedSentence = prompt.replace(
       regex,
-      (match: any, word: any) => inputParams[word] || match
+      (match: any, word: any) => inputParamSet[word] || match
     );
     setResult(modifiedSentence);
   };
@@ -82,7 +82,7 @@ const PromptTop = (props: any) => {
   };
 
   return (
-    <div className="max-w-screen-xl mt-0 px-8 xl:px-16 mx-auto " id="about" >
+    <div className="max-w-screen-xl mt-0 px-8 xl:px-16 mx-auto " id="about">
       <div className="flex flex-col-reverse lg:flex-row justify-between items-center lg:items-start lg:space-x-8 space-y-8 lg:space-y-0 mt-20 w-full">
         <div className="flex flex-col justify-center items-start row-start-2 sm:row-start-1 sm:w-3/4   border-y-neutral-500 sm:border-none">
           {checkIfRated(ratingList) ? (
@@ -136,7 +136,7 @@ const PromptTop = (props: any) => {
                         placeholder={match}
                         onChange={(e) =>
                           setInputParamSet(
-                            Object.assign({}, inputParams, {
+                            Object.assign({}, inputParamSet, {
                               [match.slice(1, -1)]: e.target.value,
                             })
                           )
@@ -152,29 +152,28 @@ const PromptTop = (props: any) => {
                   Create Prompt
                 </button>
               </div>
-     
-                <div className="flex-col w-full">
-                  <div className=" w-full mt-5  border-2 p-5 bg-slate-300  rounded-lg hover:border-black">
-                    <h1 className="text-xl lg:text-2xl xl:text-2xl font-medium text-black-600 leading-normal">
-                      {result && <strong>{result}</strong>}
-                    </h1>
-                    <div className="flex mt-2">
-                      <CopyToClipboard text={result}>
-                        <IconButton aria-label="delete">
-                          <ContentCopyIcon />
-                        </IconButton>
-                      </CopyToClipboard>
-                    </div>
-                  </div>
 
-                  <button
+              <div className="flex-col w-full">
+                <div className=" w-full mt-5  border-2 p-5 bg-slate-300  rounded-lg hover:border-black">
+                  <h1 className="text-xl lg:text-2xl xl:text-2xl font-medium text-black-600 leading-normal">
+                    {result && <strong>{result}</strong>}
+                  </h1>
+                  <div className="flex mt-2">
+                    <CopyToClipboard text={result}>
+                      <IconButton aria-label="delete">
+                        <ContentCopyIcon />
+                      </IconButton>
+                    </CopyToClipboard>
+                  </div>
+                </div>
+
+                {/* <button
                     className="px-4 w-full  mt-3 py-2 text-sm leading-tight text-wh border rounded shadow appearance-none focus:outline-none focus:shadow-outline bg-orange-500"
                     onClick={handleCreatePrompt}
                   >
                     Try This Prompt on ChatGPT
-                  </button>
-                </div>
-              
+                  </button> */}
+              </div>
             </div>
 
             <div className="w-full"></div>
