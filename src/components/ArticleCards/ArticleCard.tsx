@@ -17,11 +17,9 @@ import { Box, Breadcrumbs, Modal, Rating, Typography } from "@mui/material";
 import AdaptationPromptModel from "../adaptationPromptModel";
 import { useCookies } from "react-cookie";
 import { publicRequest } from "../../../config/axiosRequest";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import CopyIconComponent from "../CopyIconComponent";
 
 interface IProp {
   article: any;
@@ -36,7 +34,7 @@ const ArticleCard = ({ article, path }: IProp) => {
     rating: 0,
     id: "",
   });
-  const [copyState, setCopyState] = useState(false);
+ 
 
   
 
@@ -49,11 +47,7 @@ const ArticleCard = ({ article, path }: IProp) => {
     }
   }, []);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setCopyState(false);
-    }, 1000);
-  }, [copyState]);
+
 
   const handleRate = async (value: number | null) => {
     setCurrentRate({
@@ -209,16 +203,8 @@ const ArticleCard = ({ article, path }: IProp) => {
                 {article.author?.userName} ({article?.author?.designation})
               </LinkTo>
             </div>
-            <CopyToClipboard
-              text={`https://rating-app-fe-theta.vercel.app/prompt/${article._id}`}
-              onCopy={() => setCopyState(true)}
-            >
-              {copyState ? (
-                <CheckCircleOutlineIcon className="text-green-500 " />
-              ) : (
-                <ContentCopyIcon className="hover:text-slate-400" />
-              )}
-            </CopyToClipboard>
+            
+           <CopyIconComponent text={`https://rating-app-fe-theta.vercel.app/prompt/${article._id}`} />
           </div>
         </div>
       </div>

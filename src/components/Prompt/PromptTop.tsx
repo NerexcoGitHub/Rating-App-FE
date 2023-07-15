@@ -15,6 +15,8 @@ import ShareIcon from "@mui/icons-material/Share";
 import { publicRequest } from "../../../config/axiosRequest";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
+import StarIcon from "@mui/icons-material/Star";
+import CopyIconComponent from "../CopyIconComponent";
 
 const PromptTop = (props: any) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
@@ -83,8 +85,8 @@ const PromptTop = (props: any) => {
 
   return (
     <div className="max-w-screen-xl mt-0 px-8 xl:px-16 mx-auto " id="about">
-      <div className="flex flex-col-reverse lg:flex-row justify-between items-center lg:items-start lg:space-x-8 space-y-8 lg:space-y-0 mt-20 w-full">
-        <div className="flex flex-col justify-center items-start row-start-2 sm:row-start-1 sm:w-3/4   border-y-neutral-500 sm:border-none">
+      <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start lg:space-x-8 space-y-8 lg:space-y-0 mt-20 w-full">
+        <div className="flex flex-col justify-center items-start row-start-2 sm:row-start-1 w-full lg:w-3/4   border-y-neutral-500 sm:border-none">
           {checkIfRated(ratingList) ? (
             <div className="m-4">
               <p className="text-[11px] text-red-500">
@@ -159,11 +161,7 @@ const PromptTop = (props: any) => {
                     {result && <strong>{result}</strong>}
                   </h1>
                   <div className="flex mt-2">
-                    <CopyToClipboard text={result}>
-                      <IconButton aria-label="delete">
-                        <ContentCopyIcon />
-                      </IconButton>
-                    </CopyToClipboard>
+                    <CopyIconComponent text={result}/>
                   </div>
                 </div>
 
@@ -180,7 +178,7 @@ const PromptTop = (props: any) => {
           </div>
         </div>
 
-        <div className="flex w-full ">
+        <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start lg:space-x-8 space-y-8 lg:space-y-0 mt-20 w-full">
           <div className="flex flex-col justify-center items-start row-start-2 sm:row-start-1  border-y-neutral-500 sm:border-none">
             <p className={"font-normal text-xs pt-3 mb-0 md:mb-3"}>
               Updated on : {createdAt?.slice(0, 10)}
@@ -188,7 +186,7 @@ const PromptTop = (props: any) => {
 
             <ArticleTags tags={inputParams} />
 
-            <div className={"flex items-center justify-between mt-3"}>
+            <div className={"flex items-center justify-between mt-3 flex-col sm:flex-row"}>
               <div className={"flex items-center"}>
                 <Avatar
                   author={author}
@@ -205,8 +203,14 @@ const PromptTop = (props: any) => {
                   {author?.userName} ({author?.designation})
                 </LinkTo>
               </div>
+              <div className="flex items-start sm:items-center ml-10">
+                <StarIcon className="text-yellow-500" />
+                <span className="text-[15px] leading-6 text-slate-700 mt-1">
+                {rating} ({ratecount})
+                </span>
+              </div>
             </div>
-            <div className="mt-3 flex flex-col items-start">
+            {/* <div className="mt-3 flex flex-col items-start">
               <span className="flex items-center gap-4 text-sm rounded text-slate-500">
                 <Rating
                   style={{
@@ -222,7 +226,7 @@ const PromptTop = (props: any) => {
               <span className="text-[12px] leading-6 text-slate-400 mt-1">
                 based on {ratecount} user ratings
               </span>
-            </div>
+            </div> */}
             <div className={"flex items-center justify-center mt-2 mb-2"}>
               <Breadcrumbs maxItems={2}>
                 <Typography color="textPrimary">{category}</Typography>
@@ -239,11 +243,7 @@ const PromptTop = (props: any) => {
                 <strong>{prompt}</strong>.
               </h1>
               <div className="flex mt-2">
-                <CopyToClipboard text={prompt}>
-                  <IconButton aria-label="delete">
-                    <ContentCopyIcon />
-                  </IconButton>
-                </CopyToClipboard>
+       <CopyIconComponent text={prompt} />
                 <CopyToClipboard
                   text={`https://rating-app-fe-theta.vercel.app/prompt/${_id}`}
                 >
