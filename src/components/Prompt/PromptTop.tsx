@@ -161,7 +161,7 @@ const PromptTop = (props: any) => {
                     {result && <strong>{result}</strong>}
                   </h1>
                   <div className="flex mt-2">
-                    <CopyIconComponent text={result}/>
+                    <CopyIconComponent text={result} />
                   </div>
                 </div>
 
@@ -186,7 +186,11 @@ const PromptTop = (props: any) => {
 
             <ArticleTags tags={inputParams} />
 
-            <div className={"flex items-center justify-between mt-3 flex-col sm:flex-row"}>
+            <div
+              className={
+                "flex items-center justify-between mt-3 flex-col sm:flex-row"
+              }
+            >
               <div className={"flex items-center"}>
                 <Avatar
                   author={author}
@@ -206,7 +210,7 @@ const PromptTop = (props: any) => {
               <div className="flex items-start sm:items-center ml-10">
                 <StarIcon className="text-yellow-500" />
                 <span className="text-[15px] leading-6 text-slate-700 mt-1">
-                {rating} ({ratecount})
+                  {rating} ({ratecount})
                 </span>
               </div>
             </div>
@@ -243,9 +247,9 @@ const PromptTop = (props: any) => {
                 <strong>{prompt}</strong>.
               </h1>
               <div className="flex mt-2">
-       <CopyIconComponent text={prompt} />
+                <CopyIconComponent text={prompt} />
                 <CopyToClipboard
-                  text={`https://rating-app-fe-theta.vercel.app/prompt/${_id}`}
+                  text={`${process.env.NEXT_PUBLIC_PROMPT_URL}${_id}`}
                 >
                   <IconButton aria-label="delete">
                     <ShareIcon />

@@ -27,16 +27,12 @@ interface IProp {
 }
 
 const ArticleCard = ({ article, path }: IProp) => {
-
   const [cookies, setCookie, removeCookie] = useCookies(["deviceId"]);
   let router = useRouter();
   const [currentRate, setCurrentRate] = useState({
     rating: 0,
     id: "",
   });
- 
-
-  
 
   useEffect(() => {
     if (!cookies.deviceId) {
@@ -46,8 +42,6 @@ const ArticleCard = ({ article, path }: IProp) => {
       });
     }
   }, []);
-
-
 
   const handleRate = async (value: number | null) => {
     setCurrentRate({
@@ -138,7 +132,9 @@ const ArticleCard = ({ article, path }: IProp) => {
             <div className={"flex items-center justify-center m-2"}>
               <Breadcrumbs maxItems={2}>
                 <Typography color="textPrimary">{article?.category}</Typography>
-                <Typography color="textPrimary">{article?.subCategories}</Typography>
+                <Typography color="textPrimary">
+                  {article?.subCategories}
+                </Typography>
               </Breadcrumbs>
             </div>
             {/* <h1
@@ -203,8 +199,10 @@ const ArticleCard = ({ article, path }: IProp) => {
                 {article.author?.userName} ({article?.author?.designation})
               </LinkTo>
             </div>
-            
-           <CopyIconComponent text={`https://rating-app-fe-theta.vercel.app/prompt/${article._id}`} />
+
+            <CopyIconComponent
+              text={`${process.env.NEXT_PUBLIC_PROMPT_URL}${article._id}`}
+            />
           </div>
         </div>
       </div>
