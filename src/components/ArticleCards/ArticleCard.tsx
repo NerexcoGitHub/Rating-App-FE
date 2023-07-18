@@ -20,7 +20,10 @@ import { publicRequest } from "../../../config/axiosRequest";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import CopyIconComponent from "../CopyIconComponent";
-
+import StarIcon from "@mui/icons-material/Star";
+import RedoIcon from '@mui/icons-material/Redo';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 interface IProp {
   article: any;
   path: string;
@@ -145,14 +148,14 @@ const ArticleCard = ({ article, path }: IProp) => {
             <ArticleTags tags={article.inputParams} />
           </div>
         </div>
-        <div onClick={handleClick} className="cursor-pointer">
+        {/* <div onClick={handleClick} className="cursor-pointer">
           <ArticleRating
             rating={article?.rating}
             count={article?.ratecount}
             sum={article?.ratesum}
             usercount={article?.ratingList?.length || 0}
           />
-          {checkIfRated(article?.ratingList) ? (
+           {checkIfRated(article?.ratingList) ? (
             <div className="m-4">
               <p className="text-[11px] text-red-500">
                 You have already rated this prompt
@@ -175,8 +178,8 @@ const ArticleCard = ({ article, path }: IProp) => {
               />
             </div>
           )}
-        </div>
-        <div
+        </div> */}
+         <div
           className={combineClasses(
             classes.article_card_footer,
             "mt-4 mb-3 items-center px-3"
@@ -200,6 +203,24 @@ const ArticleCard = ({ article, path }: IProp) => {
               </LinkTo>
             </div>
 
+            <div className="flex items-start sm:items-center ml-10">
+                <StarIcon className="text-yellow-500" />
+                <span className="text-[15px] leading-6 text-slate-700 mt-1">
+                  {article?.rating} ({article?.ratecount})
+                </span>
+              </div>
+          </div>
+        </div>
+        <div
+          className={combineClasses(
+            classes.article_card_footer,
+            "mt-4 mb-3 items-center px-3"
+          )}
+        >
+          <div className={"flex items-center justify-between"}>
+            <RedoIcon/>
+            <StarBorderIcon/>
+            <VisibilityIcon/>
             <CopyIconComponent
               text={`${process.env.NEXT_PUBLIC_PROMPT_URL}${article._id}`}
             />
