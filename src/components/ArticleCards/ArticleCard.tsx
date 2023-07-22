@@ -218,9 +218,9 @@ const ArticleCard = ({ article, path }: IProp) => {
           )}
         >
           <div className={"flex items-center justify-between"}>
-            <RedoIcon/>
-            <StarBorderIcon/>
-            <VisibilityIcon/>
+            <RedoIcon onClick={handleClick}/>
+            <StarBorderIcon onClick={handleClick}/>
+            <VisibilityIcon onClick={handleClick}/>
             <CopyIconComponent
               text={`${process.env.NEXT_PUBLIC_PROMPT_URL}${article._id}`}
             />
