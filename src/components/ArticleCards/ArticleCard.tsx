@@ -129,7 +129,7 @@ const ArticleCard = ({ article, path }: IProp) => {
                 "text-sm font-normal mt-2 md:mt-1"
               )}
             >
-              {article?.description?.slice(0, 100)} ...
+              {article.article?.description?.length>400 ? article?.description?.slice(0, 400)+"..." : article?.description}
             </p>
 
             <div className={"flex items-center justify-center m-2"}>

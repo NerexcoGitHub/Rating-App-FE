@@ -17,6 +17,7 @@ import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
 import StarIcon from "@mui/icons-material/Star";
 import CopyIconComponent from "../CopyIconComponent";
+import ShareIconComponent from "../ShareIconComponent";
 
 const PromptTop = (props: any) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
@@ -242,19 +243,22 @@ const PromptTop = (props: any) => {
             </h1>
             <p className="text-black-500 mt-4">{description}</p>
 
-            <div className="relative w-full mt-5 border-2 p-5 bg-slate-400 rounded-lg hover:border-black">
+            <div className="relative w-full mt-5 border-2 p-5 bg-slate-300 rounded-lg hover:border-black">
               <h1 className="text-xl lg:text-2xl xl:text-2xl font-medium text-black-600 leading-normal ">
                 <strong>{prompt}</strong>.
               </h1>
               <div className="flex mt-2">
                 <CopyIconComponent text={prompt} />
-                <CopyToClipboard
+                {/* <CopyToClipboard
                   text={`${process.env.NEXT_PUBLIC_PROMPT_URL}${_id}`}
                 >
                   <IconButton aria-label="delete">
                     <ShareIcon />
                   </IconButton>
-                </CopyToClipboard>
+
+                </CopyToClipboard> */}
+                <div className="ml-2"></div>
+                <ShareIconComponent text={`${process.env.NEXT_PUBLIC_PROMPT_URL}${_id}`} />
               </div>
             </div>
           </div>
