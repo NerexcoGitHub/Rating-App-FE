@@ -9,4 +9,10 @@ const nextConfig = {
   }
 };
 
-module.exports = nextConfig
+// module.exports = nextConfig
+// next.config.js
+module.exports = {
+  experimental: {
+    outputStandalone: true,
+  },
+}
