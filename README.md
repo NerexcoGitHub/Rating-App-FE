@@ -1,6 +1,6 @@
 # prompt-app-frontend
 Prompts Rating Web APP Front End
 
-# install gidelines
+# install guidelines
 * yarn
 * yarn run start 
