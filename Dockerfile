@@ -1,5 +1,5 @@
 # # Use an appropriate Node.js base image with Yarn installed
-# FROM node:18-alpine AS deps
+# FROM node:18-alpine AS deps 
 # RUN apk add --no-cache libc6-compat
 # WORKDIR /app
 
