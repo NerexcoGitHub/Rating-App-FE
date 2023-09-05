@@ -42,7 +42,10 @@ const Hero = ({
             library of marketing, sales, operations, productivity, and customer
             support prompts.
           </p>
-          <ButtonPrimary />
+        
+            <ButtonPrimary />
+            <h2>Chrome Extension for ChatGPT</h2>
+        
         </div>
 
         <div className="flex w-full">
