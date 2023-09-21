@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import Image from 'next/image';
 import ButtonPrimary from './Misc/ButtonPrimary';
 import { motion } from 'framer-motion';
+import styles from './hero.module.scss';
 import getScrollAnimation from '../utils/getScrollAnimation';
 import ScrollAnimationWrapper from './ScrollAnimationWrapper';
 import Lottie from 'react-lottie';
@@ -28,7 +29,10 @@ const Hero = ({
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   //determine if mobile
   return (
-    <div className='max-w-screen-xl mt-7 px-8 xl:px-16 mx-auto mb-5' id='about'>
+    <div
+      className='max-w-screen-xl mt-7 px-8 xl:px-16 mx-auto mb-5 '
+      id='about'
+    >
       <motion.div
         className='flex flex-col-reverse lg:flex-row content-between items-center  lg:items-center lg:space-x-8 space-y-8 lg:space-y-0 mt-20'
         variants={scrollAnimation}
@@ -49,30 +53,42 @@ const Hero = ({
           </div>
         </div>
 
-        <div className='flex w-full'>
-          <motion.div className='h-full w-full' variants={scrollAnimation}>
-            {/* <Image
-              src='/assets/hero.svg'
-              alt='Hero Image'
-              objectFit='contain'
-              quality={100}
-              width={612}
-              height={399}
-              layout='responsive'
-            /> */}
-            <Lottie
-              options={{
-                loop: true,
-                autoplay: true,
-                animationData: askme,
-                rendererSettings: {
-                  preserveAspectRatio: 'xMidYMid slice',
-                },
-              }}
-              height={window.innerWidth < 768 ? 300 : 400}
-              width={window.innerWidth < 768 ? 300 : 400}
-            />
-          </motion.div>
+        <div className='relative w-full'>
+          <div
+            className={`absolute top-[15%] left-36 w-60 h-60 rounded-full bg-orange-500 mix-blend-multiply  opacity-50 ${styles.blob1} filter blur-xl`}
+          ></div>
+          <div
+            className={`absolute top-[15%] right-28 w-60 h-60 rounded-full bg-orange-300 mix-blend-multiply  opacity-50 ${styles.blob2} filter blur-xl`}
+          ></div>
+          <div
+            className={`absolute top-[30%] left-60  w-60 h-60 rounded-full bg-red-500 mix-blend-multiply opacity-50 ${styles.blob3} filter blur-xl`}
+          ></div>
+
+          <div className='flex w-full'>
+            <motion.div className='h-full w-full' variants={scrollAnimation}>
+              {/* <Image
+                src='/assets/hero.svg'
+                alt='Hero Image'
+                objectFit='contain'
+                quality={100}
+                width={612}
+                height={399}
+                layout='responsive'
+              /> */}
+              <Lottie
+                options={{
+                  loop: true,
+                  autoplay: true,
+                  animationData: askme,
+                  rendererSettings: {
+                    preserveAspectRatio: 'xMidYMid slice',
+                  },
+                }}
+                height={window.innerWidth < 768 ? 300 : 400}
+                width={window.innerWidth < 768 ? 300 : 400}
+              />
+            </motion.div>
+          </div>
         </div>
       </motion.div>
 

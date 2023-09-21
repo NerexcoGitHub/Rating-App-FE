@@ -15,7 +15,7 @@ function SearchForm(props: any) {
       <label htmlFor='simple-search' className='sr-only'>
         Search
       </label>
-      <div className='sm:min-w-[1rem] relative lg-min-w-[30rem] m-2'>
+      <div className='sm:min-w-[1rem] relative lg:min-w-[35rem] m-2'>
         <div className='absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none'>
           <svg
             aria-hidden='true'
@@ -37,7 +37,7 @@ function SearchForm(props: any) {
           style={{
             boxShadow: '0px 5px 15px 0px rgba(255, 125, 25, 0.25)',
           }}
-          className='w-full text-gray-900 text-[1.2rem] rounded-[1rem] pl-14 py-5 border-[2px] pr-5 border-orange-300 ring-0 focus:ring-0 focus:border-orange-500'
+          className='w-full text-gray-900 text-[1.2rem]  rounded-[1rem] pl-14 py-5 border-[2px] pr-5 border-orange-300 ring-0 focus:ring-0 focus:border-orange-500'
           placeholder='Search'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}

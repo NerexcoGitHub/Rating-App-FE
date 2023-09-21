@@ -13,8 +13,8 @@ const Home = () => {
       <div className='container mx-auto lg:px-[15px] px-0'>
         <div className={'flex flex-wrap'}>
           {/* <h1 className='px-3 w-full mb-5 mt-5 md:mt-0 text-md md:text-3xl font-medium text-center'>
-            Let's get started! Pick a prompt, and try it out!
-          </h1> */}
+              Let's get started! Pick a prompt, and try it out!
+            </h1> */}
           <BlogIndexPage articlesPerPage={6} />
         </div>
       </div>
