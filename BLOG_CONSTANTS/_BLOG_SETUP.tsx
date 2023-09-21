@@ -167,11 +167,10 @@ export const PRIMARY_NAV: iNavSetup = {
 };
 
 export const DEFAULT_SEO: iSEO = {
-  title: 'prompt rating app',
-  description: 'prompt rating app',
-  keywords: 'prompt rating app',
+  title: 'AskMe',
+  description: 'AskMe - Get industry-standard promps before asking ChatGPT.',
+  keywords: 'AskMe',
   url: WEBSITE_URL,
   author: `${MAYUR.name}, ${RUPALI.name}`,
-  twitterHandle: '@WebExpe',
-  ogImage: '/public/images/og-image.jpg',
+  ogImage: '/assets/askme.svg',
 };
