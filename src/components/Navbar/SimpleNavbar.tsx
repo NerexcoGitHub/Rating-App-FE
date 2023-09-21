@@ -1,14 +1,14 @@
-import classes from "./Navbar.module.scss";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { combineClasses, transformImagePaths } from "../../utils/utils";
-import { LogoType, THEMES } from "../../shared/enums";
-import LinkTo from "../LinkTo";
-import { useTheme } from "next-themes";
-import { BsFillMoonFill, BsFillSunFill, BsFillShareFill } from "react-icons/bs";
-import { AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
-import NavCatergoryDD from "../Misc/NavCategoryDD";
-import { iNavbar, iNavLink, iNavSocials } from "../../shared/interfaces";
+import classes from './Navbar.module.scss';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { combineClasses, transformImagePaths } from '../../utils/utils';
+import { LogoType, THEMES } from '../../shared/enums';
+import LinkTo from '../LinkTo';
+import { useTheme } from 'next-themes';
+import { BsFillMoonFill, BsFillSunFill, BsFillShareFill } from 'react-icons/bs';
+import { AiOutlineMenu, AiOutlineSearch } from 'react-icons/ai';
+import NavCatergoryDD from '../Misc/NavCategoryDD';
+import { iNavbar, iNavLink, iNavSocials } from '../../shared/interfaces';
 
 const SimpleNavbar = ({
   openSearch,
@@ -26,14 +26,12 @@ const SimpleNavbar = ({
     <div
       className={combineClasses(
         classes.navbar__container,
-        "container flex items-center justify-between",
-        "px-2"
+        'container flex items-center justify-between',
+        'px-2'
       )}
     >
-      <div className="flex items-center ml-4">
-       
-
-        <Link href="/" passHref>
+      <div className='flex items-center ml-4'>
+        <Link href='/' passHref>
           {logo ? (
             logo.type === LogoType.IMAGE ? (
               <img
@@ -42,34 +40,34 @@ const SimpleNavbar = ({
                     ? transformImagePaths(logo.logoLight)
                     : transformImagePaths(logo.logo)
                 }
-                alt="WebExpe"
-                className="cursor-pointer"
-                width="100px"
+                alt='AskMe'
+                className='cursor-pointer'
+                width='150px'
               />
             ) : (
-              <a className="text-[22px] font-semibold">{logo.logo}</a>
+              <a className='text-[22px] font-semibold'>{logo.logo}</a>
             )
           ) : (
-            <a className="text-[22px] font-semibold">Logo</a>
+            <a className='text-[22px] font-semibold'>Logo</a>
           )}
         </Link>
       </div>
 
-      <div className="flex items-center">
-        <div className="text-[14px] font-normal items-center lg:flex hidden">
+      <div className='flex items-center'>
+        <div className='text-[14px] font-normal items-center lg:flex hidden'>
           {navLinks.map((each: iNavLink, i: any) =>
-            each.type !== "dropdown" ? (
+            each.type !== 'dropdown' ? (
               !each.newTab ? (
-                <LinkTo href={each.path} key={i} passHref className="mx-2">
+                <LinkTo href={each.path} key={i} passHref className='mx-2'>
                   {each.label}
                 </LinkTo>
               ) : (
                 <a
                   href={each.path}
                   key={each.path + 1}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="d-block mx-2 flex-wrap"
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='d-block mx-2 flex-wrap'
                 >
                   {each.label}
                 </a>
@@ -85,14 +83,14 @@ const SimpleNavbar = ({
             )
           )}
           {socials && (
-            <div className="ml-5 pt-1">
+            <div className='ml-5 pt-1'>
               {socials.map((each: iNavSocials, i: any) => (
                 <a
                   href={each.link}
                   key={i}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[18px] inline-block mr-4"
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='text-[18px] inline-block mr-4'
                 >
                   {each.icon}
                 </a>
@@ -104,12 +102,12 @@ const SimpleNavbar = ({
         <div
           className={combineClasses(
             classes.mobileBurgerToggle,
-            "mr-5",
-            openSidebar ? classes.mobileBurgerToggle__close : " "
+            'mr-5',
+            openSidebar ? classes.mobileBurgerToggle__close : ' '
           )}
           onClick={() => toggleSideMenu()}
         >
-          <AiOutlineMenu className="dark:text-white text-black text-2xl" />
+          <AiOutlineMenu className='dark:text-white text-black text-2xl' />
         </div>
 
         {/* <div className={combineClasses(classes.search_icon_wrapper, 'ml-5 dark:text-white')} onClick={() => openSearch()}>
