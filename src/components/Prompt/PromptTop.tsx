@@ -129,7 +129,7 @@ const PromptTop = (props: any) => {
               </label>
               <div className='flex flex-col'>
                 {matches?.length > 0 &&
-                  matches.map((match: any, i) => (
+                  matches.map((match: any, i: number) => (
                     <div key={i}>
                       <label
                         className='block m-1 text-sm font-bold text-gray-700'

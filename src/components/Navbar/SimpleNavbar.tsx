@@ -54,11 +54,16 @@ const SimpleNavbar = ({
       </div>
 
       <div className='flex items-center'>
-        <div className='text-[14px] font-normal items-center lg:flex hidden'>
+        <div className='text-[16px] font-normal items-center lg:flex hidden'>
           {navLinks.map((each: iNavLink, i: any) =>
             each.type !== 'dropdown' ? (
               !each.newTab ? (
-                <LinkTo href={each.path} key={i} passHref className='mx-2'>
+                <LinkTo
+                  href={each.path}
+                  key={i}
+                  passHref
+                  className='mx-2 p-1 px-2 hover:bg-orange-300 rounded-lg hover:text-black '
+                >
                   {each.label}
                 </LinkTo>
               ) : (
@@ -102,7 +107,7 @@ const SimpleNavbar = ({
         <div
           className={combineClasses(
             classes.mobileBurgerToggle,
-            'mr-5',
+            'mx-5',
             openSidebar ? classes.mobileBurgerToggle__close : ' '
           )}
           onClick={() => toggleSideMenu()}
