@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from './style.module.scss';
 import Prism from 'prismjs';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCopy } from '@fortawesome/free-solid-svg-icons';
 const CodeBlock = function (props: {
   narrow: boolean;
   language: string;
@@ -16,25 +14,25 @@ const CodeBlock = function (props: {
       <div className={styles.codeTitle}>
         <span>{props.language.toUpperCase()}</span>
         <span>
-          {/* <Button
+          <button
             title='Copy'
-            icon={<FontAwesomeIcon icon={faCopy} />}
-            size='small'
-            color='secondary'
+            className='bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-2 rounded-lg'
             onClick={() => {
               try {
-                navigator.clipboard.writeText(props.children);
+                navigator.clipboard.writeText(
+                  props.children ? props.children.toString() : ''
+                );
               } catch {
                 console.log('Clipboard not supported');
               }
             }}
-            shaded
-            margin={false}
-          /> */}
+          >
+            Copy
+          </button>
         </span>
       </div>
       <pre className={styles.code}>
-        <code className={` language-${props.language}`}>{props.children}</code>
+        <code className={`language-${props.language}`}>{props.children}</code>
       </pre>
     </div>
   );

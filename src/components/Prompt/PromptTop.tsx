@@ -26,12 +26,16 @@ const PromptTop = (props: any) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   const [cookies, setCookie, removeCookie] = useCookies(['deviceId']);
   const [touched, setTouched] = useState<string[]>([]);
+  const [promptModal, setPromptModal] = useState(false);
+  const [promptResponseLoading, setPromptResponseLoading] = useState(true);
   const [commentSubmitted, setCommentSubmitted] = useState(false);
   const [comments, setComments] = useState([
     'This is a comment',
     'This is another comment',
   ]);
   const [newComment, setNewComment] = useState('');
+  const [promptResponse, setPromptResponse] = useState<string>();
+  const [error, setError] = useState(false);
   const handleCommentChange = (e) => {
     setNewComment(e.target.value);
   };
@@ -47,7 +51,7 @@ const PromptTop = (props: any) => {
       setNewComment('');
     }
   };
-  let router = useRouter();
+
   const [currentRate, setCurrentRate] = useState({
     rating: 0,
     id: '',
@@ -76,6 +80,13 @@ const PromptTop = (props: any) => {
   const matches = prompt.match(regex);
 
   const handleCreatePrompt = async () => {
+    if (touched.length < matches?.length) {
+      setError(true);
+      return;
+    }
+    setError(false);
+    setPromptModal(true);
+    getPromptResponse();
     setTouched([...touched, 'promptCreated']);
     const modifiedSentence = prompt.replace(
       regex,
@@ -83,7 +94,7 @@ const PromptTop = (props: any) => {
     );
     setResult(modifiedSentence);
   };
-  console.log(touched);
+
   const getAllTouched = () => {
     return touched.length >= matches?.length + 1;
   };
@@ -113,46 +124,9 @@ const PromptTop = (props: any) => {
       return false;
     }
   };
-  const text = `Certainly! Here are some steps to lead a good life:
 
-  1. Set meaningful goals: Define what matters most to you and set specific, achievable goals that align with your values and aspirations.
-  
-  2. Focus on personal growth: Develop a growth mindset and commit to continuous learning and self-improvement. Seek new experiences, acquire new skills, and challenge yourself regularly.
-  
-  3. Cultivate positive relationships: Surround yourself with supportive and nurturing individuals who uplift and inspire you. Foster strong connections through empathy, active listening, and maintaining open lines of communication.
-  
-  4. Take care of your physical health: Prioritize regular exercise, a balanced diet, and sufficient sleep. Incorporate healthy habits into your routine to boost your overall well-being.
-  
-  5. Practice self-care: Dedicate time to self-care activities that promote relaxation, stress reduction, and personal rejuvenation. This may include activities such as reading, meditating, pursuing hobbies, or engaging in creative outlets.
-  
-  6. Embrace gratitude: Cultivate an attitude of gratitude by reflecting on the positives in your life. Express appreciation for the people, experiences, and opportunities that bring you joy and fulfillment.
-  
-  7. Be mindful and present: Practice being fully present in each moment. Mindfulness exercises, such as meditation or deep breathing, can help you develop awareness, reduce stress, and enhance your overall mental well-being.
-  
-  8. Give back and show kindness: Engage in acts of kindness, volunteering, or donating to causes that resonate with you. Helping others not only benefits them but also promotes a sense of purpose and fulfillment in your own life.
-  
-  9. Manage your finances wisely: Cultivate responsible financial habits by creating a budget, saving for the future, and making informed decisions about expenses. Building a solid financial foundation can alleviate stress and provide a sense of security.
-  
-  10. Embrace optimism and resilience: Develop a positive mindset and resilience in the face of challenges. View difficulties as opportunities for growth and learning, and approach setbacks with determination and perseverance.
-  
-  \`\`\`html
-  <!DOCTYPE html>
-  <html>
-  <head>
-      <title>Text Box Example</title>
-  </head>
-  <body>
-      <form>
-          <label for="textbox">Enter your name:</label><br>
-          <input type="text" id="textbox" name="name"><br><br>
-          <input type="submit" value="Submit">
-      </form>
-  </body>
-  </html>
-  \`\`\`
-  
-  Remember, leading a good life is a deeply personal journey, and it's essential to define your own path based on what brings you joy, fulfillment, and a sense of purpose.`;
-  function formatCodeBlocksAndText(text: string) {
+  function formatCodeBlocksAndText(text?: string) {
+    if (!text) return;
     // Define a regular expression to match code blocks
     const codeBlockRegex = /```(\w+)([\s\S]+?)```/g;
 
@@ -174,18 +148,79 @@ const PromptTop = (props: any) => {
       } else {
         // Code content segment
         return (
-          <CodeBlock
-            key={index + 2}
-            language={segments[index - 1].trim()}
-            narrow
-          >
+          <CodeBlock key={index + 2} language={segments[index - 1].trim()}>
             {segment}
           </CodeBlock>
         );
       }
     });
-    console.log(formattedContent);
     return formattedContent;
+  }
+
+  async function getPromptResponse() {
+    setPromptResponseLoading(true);
+    //delay of 3 seconds
+    await new Promise((r) => setTimeout(r, 3000));
+    setPromptResponse(`Certainly! Here's a code snippet in Java to find the sum of 10 numbers:
+
+    \`\`\`java
+    import java.util.Scanner;
+    
+    public class SumOfNumbers {
+        public static void main(String[] args) {
+            int sum = 0;
+            Scanner scanner = new Scanner(System.in);
+    
+            System.out.println("Enter 10 numbers:");
+            for (int i = 0; i < 10; i++) {
+                System.out.print("Number " + (i+1) + ": ");
+                int number = scanner.nextInt();
+                sum += number;
+            }
+    
+            System.out.println("Sum of the numbers is: " + sum);
+        }
+    }
+    \`\`\`
+    
+    In this code, we use a for loop to iterate 10 times and prompt the user to enter a number in each iteration. The numbers are then added to the \`sum\` variable. Finally, the sum is printed to the console.
+    
+    
+    Certainly! Here's the code snippet modified to generate HTML code to display the output:
+    
+    \`\`\`java
+    import java.util.Scanner;
+    
+    public class SumOfNumbers {
+        public static void main(String[] args) {
+            int sum = 0;
+            Scanner scanner = new Scanner(System.in);
+    
+            System.out.println("Enter 10 numbers:");
+            for (int i = 0; i < 10; i++) {
+                System.out.print("Number " + (i+1) + ": ");
+                int number = scanner.nextInt();
+                sum += number;
+            }
+    
+            String htmlCode = "<html>\n" +
+                    "<head>\n" +
+                    "<title>Sum of Numbers</title>\n" +
+                    "</head>\n" +
+                    "<body>\n" +
+                    "<h1>Sum of the 10 numbers is:</h1>\n" +
+                    "<p>" + sum + "</p>\n" +
+                    "</body>\n" +
+                    "</html>";
+                    
+            System.out.println(htmlCode);
+        }
+    }
+    \`\`\`
+    
+    This code will generate an HTML code string that displays the sum of the 10 numbers as the output. You can copy the generated HTML code and place it in an HTML file or use it in your desired context.`);
+    //make api call here
+    setPromptResponseLoading(false);
   }
 
   return (
@@ -231,13 +266,17 @@ const PromptTop = (props: any) => {
                       />
                     </div>
                   ))}
-
                 <button
                   className='px-4 w-full sm:w-1/2 mt-3 py-2 text-sm leading-tight text-wh border rounded shadow appearance-none focus:outline-none focus:shadow-outline bg-orange-500'
                   onClick={handleCreatePrompt}
                 >
                   Create Prompt
                 </button>
+                {error && (
+                  <span className='text-red-500 py-2'>
+                    Please fill all the details
+                  </span>
+                )}
               </div>
 
               <div className='flex-col w-full'>
@@ -407,12 +446,37 @@ const PromptTop = (props: any) => {
           <strong>{prompt}</strong>.
         </h1>
       </div> */}
-      <Modal open={true} fullHeight={false} closeModal={() => {}}>
+      <Modal
+        open={promptModal}
+        fullHeight={false}
+        closeModal={() => setPromptModal(false)}
+      >
         <div className='relative mt-5 p-5 max-w-[50vw]'>
           <h2 className='text-3xl lg:text-xl font-medium text-black-600 leading-normal '>
             <strong>{prompt}</strong>.
           </h2>
-          <div className='text-left'>{formatCodeBlocksAndText(text)}</div>
+          <br />
+          <div className='text-left'>
+            {promptResponseLoading ? (
+              <div className='grid justify-center items-center h-[50vh] w-full'>
+                <div
+                  className=' rounded-full h-32 w-32 justify-self-center'
+                  style={{ animation: 'spin 4s linear infinite' }}
+                >
+                  <Image
+                    src='/assets/gpt-loading.svg'
+                    alt='Loading'
+                    objectFit='contain'
+                    width={100}
+                    height={100}
+                    layout='responsive'
+                  />
+                </div>
+              </div>
+            ) : (
+              formatCodeBlocksAndText(promptResponse)
+            )}
+          </div>
         </div>
       </Modal>
     </div>

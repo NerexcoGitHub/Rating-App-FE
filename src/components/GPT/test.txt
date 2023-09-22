@@ -20,10 +20,10 @@ public class SumOfNumbers {
 }
 ```
 
-In this code, we use a for loop to iterate 10 times and prompt the user to enter a number in each iteration. The numbers are then added to the `sum` variable. Finally, the sum is printed to the console."
+In this code, we use a for loop to iterate 10 times and prompt the user to enter a number in each iteration. The numbers are then added to the `sum` variable. Finally, the sum is printed to the console.
 
 
-"Certainly! Here's the code snippet modified to generate HTML code to display the output:
+Certainly! Here's the code snippet modified to generate HTML code to display the output:
 
 ```java
 import java.util.Scanner;
