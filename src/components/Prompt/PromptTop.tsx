@@ -8,6 +8,7 @@ import {
   Typography,
   TextareaAutosize,
 } from '@mui/material';
+import CodeBlock from '../CodeBlock';
 import Avatar from '../Misc/Avatar';
 import { combineClasses } from '../../utils/utils';
 import LinkTo from '../LinkTo';
@@ -19,6 +20,7 @@ import { useRouter } from 'next/router';
 import StarIcon from '@mui/icons-material/Star';
 import CopyIconComponent from '../CopyIconComponent';
 import ShareIconComponent from '../ShareIconComponent';
+import Modal from '../Modal';
 
 const PromptTop = (props: any) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
@@ -111,12 +113,48 @@ const PromptTop = (props: any) => {
       return false;
     }
   };
+  function formatCodeBlocksAndText(text: string) {
+    // Define a regular expression to match code blocks
+    const codeBlockRegex = /```(\w+)\n([\s\S]+?)\n```/g;
+
+    // Split the text into code blocks and regular text
+    const segments = text.split(codeBlockRegex);
+
+    // Process segments and create React elements
+    const formattedContent = segments.map((segment, index) => {
+      if (index % 3 === 0) {
+        // Regular text segment
+        return <p key={index}>{segment}</p>;
+      } else if (index % 3 === 1) {
+        // Opening code block
+        const language = segment.trim();
+        return (
+          <CodeBlock language={language} key={index + 1} narrow>
+            {''}
+          </CodeBlock>
+        );
+      } else {
+        // Code content segment
+        return (
+          <CodeBlock
+            key={index + 2}
+            language={segments[index - 1].trim()}
+            narrow
+          >
+            {segment}
+          </CodeBlock>
+        );
+      }
+    });
+
+    return <div>{formattedContent}</div>;
+  }
 
   return (
     <div className='max-w-screen-xl mt-0 px-8 xl:px-16 mx-auto ' id='about'>
       <div className='flex flex-col lg:flex-row justify-between items-center lg:items-start lg:space-x-8 space-y-8 lg:space-y-0 mt-20 w-full'>
         <div className='flex flex-col justify-center items-start row-start-2 sm:row-start-1 w-full lg:w-3/4   border-y-neutral-500 sm:border-none'>
-          <h1 className='text-lg lg:text-xl xl:text-xl font-lg text-black-600 leading-normal '>
+          <h1 className='text-lg lg:text-[1.5rem] font-lg text-black-600 leading-normal '>
             Customize for Yourself!
           </h1>
           <div className='flex flex-col  justify-between items-center lg:items-start lg:space-x-8 space-y-8 lg:space-y-0 w-full'>
@@ -331,6 +369,13 @@ const PromptTop = (props: any) => {
           <strong>{prompt}</strong>.
         </h1>
       </div> */}
+      <Modal open={true} fullHeight={false} closeModal={() => {}}>
+        <div className='relative mt-5 p-5 max-w-[50vw]'>
+          <h2 className='text-3xl lg:text-xl font-medium text-black-600 leading-normal '>
+            <strong>{prompt}</strong>.
+          </h2>
+        </div>
+      </Modal>
     </div>
   );
 };

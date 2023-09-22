@@ -87,7 +87,7 @@ const ArticleCard = ({ article, path }: IProp) => {
   const handleClick = (event: any) => {
     router.push(`/prompt/${article._id}`);
   };
-  function camelCaseToNormal(text) {
+  function camelCaseToNormal(text: string) {
     // Use a regular expression to insert a space before all uppercase letters
     return (
       text
