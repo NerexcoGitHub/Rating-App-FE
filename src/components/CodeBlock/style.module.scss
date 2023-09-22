@@ -1,7 +1,6 @@
-@use './../../styles/theme' as t;
 .codeContainer {
   padding: 0.8rem;
-  background-color: var(--code);
+  background-color: #333333;
   overflow: auto;
   border-radius: 1rem;
   max-width: 90ch;
@@ -12,8 +11,9 @@
   // width: 100%;
 }
 .code {
-  font-family: var(--codefont) !important;
-  background-color: var(--code) !important;
+  font-family: 'Noto Sans Mono' !important;
+  background-color: #333333 !important;
+  color: #dddddd;
   padding: 0.5rem !important;
   overflow: auto;
   text-align: left;
@@ -27,16 +27,16 @@
 .codeTitle {
   font-size: 0.6rem;
   text-align: right;
-  color: var(--light-d);
+  color: #dddddd;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 0.5rem;
-  @media screen and (max-width: t.$mobile-width) {
+  @media screen and (max-width: 500px) {
     flex-direction: column;
     align-items: flex-end;
   }
   button {
-    color: var(--light-d) !important;
+    color: #dddddd !important;
   }
 }

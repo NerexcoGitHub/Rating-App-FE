@@ -113,26 +113,64 @@ const PromptTop = (props: any) => {
       return false;
     }
   };
+  const text = `Certainly! Here are some steps to lead a good life:
+
+  1. Set meaningful goals: Define what matters most to you and set specific, achievable goals that align with your values and aspirations.
+  
+  2. Focus on personal growth: Develop a growth mindset and commit to continuous learning and self-improvement. Seek new experiences, acquire new skills, and challenge yourself regularly.
+  
+  3. Cultivate positive relationships: Surround yourself with supportive and nurturing individuals who uplift and inspire you. Foster strong connections through empathy, active listening, and maintaining open lines of communication.
+  
+  4. Take care of your physical health: Prioritize regular exercise, a balanced diet, and sufficient sleep. Incorporate healthy habits into your routine to boost your overall well-being.
+  
+  5. Practice self-care: Dedicate time to self-care activities that promote relaxation, stress reduction, and personal rejuvenation. This may include activities such as reading, meditating, pursuing hobbies, or engaging in creative outlets.
+  
+  6. Embrace gratitude: Cultivate an attitude of gratitude by reflecting on the positives in your life. Express appreciation for the people, experiences, and opportunities that bring you joy and fulfillment.
+  
+  7. Be mindful and present: Practice being fully present in each moment. Mindfulness exercises, such as meditation or deep breathing, can help you develop awareness, reduce stress, and enhance your overall mental well-being.
+  
+  8. Give back and show kindness: Engage in acts of kindness, volunteering, or donating to causes that resonate with you. Helping others not only benefits them but also promotes a sense of purpose and fulfillment in your own life.
+  
+  9. Manage your finances wisely: Cultivate responsible financial habits by creating a budget, saving for the future, and making informed decisions about expenses. Building a solid financial foundation can alleviate stress and provide a sense of security.
+  
+  10. Embrace optimism and resilience: Develop a positive mindset and resilience in the face of challenges. View difficulties as opportunities for growth and learning, and approach setbacks with determination and perseverance.
+  
+  \`\`\`html
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Text Box Example</title>
+  </head>
+  <body>
+      <form>
+          <label for="textbox">Enter your name:</label><br>
+          <input type="text" id="textbox" name="name"><br><br>
+          <input type="submit" value="Submit">
+      </form>
+  </body>
+  </html>
+  \`\`\`
+  
+  Remember, leading a good life is a deeply personal journey, and it's essential to define your own path based on what brings you joy, fulfillment, and a sense of purpose.`;
   function formatCodeBlocksAndText(text: string) {
     // Define a regular expression to match code blocks
-    const codeBlockRegex = /```(\w+)\n([\s\S]+?)\n```/g;
+    const codeBlockRegex = /```(\w+)([\s\S]+?)```/g;
 
     // Split the text into code blocks and regular text
     const segments = text.split(codeBlockRegex);
-
     // Process segments and create React elements
     const formattedContent = segments.map((segment, index) => {
       if (index % 3 === 0) {
         // Regular text segment
-        return <p key={index}>{segment}</p>;
+        var outputString = segment.replace(/\n/g, '<br/>');
+        return (
+          <p key={index}>
+            <div dangerouslySetInnerHTML={{ __html: outputString }} />
+          </p>
+        );
       } else if (index % 3 === 1) {
         // Opening code block
         const language = segment.trim();
-        return (
-          <CodeBlock language={language} key={index + 1} narrow>
-            {''}
-          </CodeBlock>
-        );
       } else {
         // Code content segment
         return (
@@ -146,8 +184,8 @@ const PromptTop = (props: any) => {
         );
       }
     });
-
-    return <div>{formattedContent}</div>;
+    console.log(formattedContent);
+    return formattedContent;
   }
 
   return (
@@ -374,6 +412,7 @@ const PromptTop = (props: any) => {
           <h2 className='text-3xl lg:text-xl font-medium text-black-600 leading-normal '>
             <strong>{prompt}</strong>.
           </h2>
+          <div className='text-left'>{formatCodeBlocksAndText(text)}</div>
         </div>
       </Modal>
     </div>
