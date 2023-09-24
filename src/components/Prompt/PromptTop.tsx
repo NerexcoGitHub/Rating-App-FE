@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import Image from 'next/image';
 import getScrollAnimation from '../../utils/getScrollAnimation';
+import styles from './styles.module.scss';
 import {
   Breadcrumbs,
   IconButton,
@@ -86,13 +87,13 @@ const PromptTop = (props: any) => {
     }
     setError(false);
     setPromptModal(true);
-    getPromptResponse();
     setTouched([...touched, 'promptCreated']);
     const modifiedSentence = prompt.replace(
       regex,
       (match: any, word: any) => inputParamSet[word] || match
     );
     setResult(modifiedSentence);
+    getPromptResponse(modifiedSentence);
   };
 
   const getAllTouched = () => {
@@ -124,12 +125,11 @@ const PromptTop = (props: any) => {
       return false;
     }
   };
-
+  console.log(promptResponse);
   function formatCodeBlocksAndText(text?: string) {
     if (!text) return;
     // Define a regular expression to match code blocks
     const codeBlockRegex = /```(\w+)([\s\S]+?)```/g;
-
     // Split the text into code blocks and regular text
     const segments = text.split(codeBlockRegex);
     // Process segments and create React elements
@@ -139,7 +139,7 @@ const PromptTop = (props: any) => {
         var outputString = segment.replace(/\n/g, '<br/>');
         return (
           <p key={index}>
-            <div dangerouslySetInnerHTML={{ __html: outputString }} />
+            <span dangerouslySetInnerHTML={{ __html: outputString }} />
           </p>
         );
       } else if (index % 3 === 1) {
@@ -148,7 +148,11 @@ const PromptTop = (props: any) => {
       } else {
         // Code content segment
         return (
-          <CodeBlock key={index + 2} language={segments[index - 1].trim()}>
+          <CodeBlock
+            key={index + 2}
+            language={segments[index - 1].trim()}
+            narrow={false}
+          >
             {segment}
           </CodeBlock>
         );
@@ -156,70 +160,22 @@ const PromptTop = (props: any) => {
     });
     return formattedContent;
   }
-
-  async function getPromptResponse() {
+  async function getPromptResponse(result: string) {
     setPromptResponseLoading(true);
-    //delay of 3 seconds
-    await new Promise((r) => setTimeout(r, 3000));
-    setPromptResponse(`Certainly! Here's a code snippet in Java to find the sum of 10 numbers:
-
-    \`\`\`java
-    import java.util.Scanner;
-    
-    public class SumOfNumbers {
-        public static void main(String[] args) {
-            int sum = 0;
-            Scanner scanner = new Scanner(System.in);
-    
-            System.out.println("Enter 10 numbers:");
-            for (int i = 0; i < 10; i++) {
-                System.out.print("Number " + (i+1) + ": ");
-                int number = scanner.nextInt();
-                sum += number;
-            }
-    
-            System.out.println("Sum of the numbers is: " + sum);
-        }
+    setPromptResponse('');
+    try {
+      //make api call here
+      const res = await fetch(
+        `/api/chat-gpt?prompt=${encodeURIComponent(result)}`
+      );
+      if (!res.ok) {
+        throw new Error('Something went wrong');
+      }
+      const data = await res.json();
+      setPromptResponse(data.data);
+    } catch (err) {
+      console.log(err);
     }
-    \`\`\`
-    
-    In this code, we use a for loop to iterate 10 times and prompt the user to enter a number in each iteration. The numbers are then added to the \`sum\` variable. Finally, the sum is printed to the console.
-    
-    
-    Certainly! Here's the code snippet modified to generate HTML code to display the output:
-    
-    \`\`\`java
-    import java.util.Scanner;
-    
-    public class SumOfNumbers {
-        public static void main(String[] args) {
-            int sum = 0;
-            Scanner scanner = new Scanner(System.in);
-    
-            System.out.println("Enter 10 numbers:");
-            for (int i = 0; i < 10; i++) {
-                System.out.print("Number " + (i+1) + ": ");
-                int number = scanner.nextInt();
-                sum += number;
-            }
-    
-            String htmlCode = "<html>\n" +
-                    "<head>\n" +
-                    "<title>Sum of Numbers</title>\n" +
-                    "</head>\n" +
-                    "<body>\n" +
-                    "<h1>Sum of the 10 numbers is:</h1>\n" +
-                    "<p>" + sum + "</p>\n" +
-                    "</body>\n" +
-                    "</html>";
-                    
-            System.out.println(htmlCode);
-        }
-    }
-    \`\`\`
-    
-    This code will generate an HTML code string that displays the sum of the 10 numbers as the output. You can copy the generated HTML code and place it in an HTML file or use it in your desired context.`);
-    //make api call here
     setPromptResponseLoading(false);
   }
 
@@ -453,15 +409,17 @@ const PromptTop = (props: any) => {
       >
         <div className='relative mt-5 p-5 max-w-[50vw]'>
           <h2 className='text-3xl lg:text-xl font-medium text-black-600 leading-normal '>
-            <strong>{prompt}</strong>.
+            <strong>{result}</strong>.
           </h2>
           <br />
           <div className='text-left'>
             {promptResponseLoading ? (
               <div className='grid justify-center items-center h-[50vh] w-full'>
                 <div
-                  className=' rounded-full h-32 w-32 justify-self-center'
-                  style={{ animation: 'spin 4s linear infinite' }}
+                  className={
+                    'rounded-full h-32 w-32 justify-self-center ' +
+                    styles.loader
+                  }
                 >
                   <Image
                     src='/assets/gpt-loading.svg'
