@@ -6,7 +6,7 @@ export default async function relayChatGPT(
   res: NextApiResponse
 ) {
   try {
-    const apiKey = process.env.GPT_API_KEY;
+    const apiKey = process.env.OPENAI_API_KEY;
 
     const apiUrl = 'https://api.openai.com/v1/chat/completions';
 
@@ -31,8 +31,8 @@ export default async function relayChatGPT(
         stream: false,
       }),
     });
+
     const externalRes = await externalResponse.json();
-    console.log(externalRes.choices[0].message.content);
     res.json({
       message: 'Success',
       data: externalRes.choices[0].message.content,
