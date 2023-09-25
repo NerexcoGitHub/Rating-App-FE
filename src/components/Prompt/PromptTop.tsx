@@ -1,4 +1,9 @@
-import React, { useMemo, useState } from 'react';
+import React, {
+  ChangeEventHandler,
+  SyntheticEvent,
+  useMemo,
+  useState,
+} from 'react';
 import Image from 'next/image';
 import getScrollAnimation from '../../utils/getScrollAnimation';
 import styles from './styles.module.scss';
@@ -24,31 +29,37 @@ import ShareIconComponent from '../ShareIconComponent';
 import Modal from '../Modal';
 
 const PromptTop = (props: any) => {
-  const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   const [cookies, setCookie, removeCookie] = useCookies(['deviceId']);
   const [touched, setTouched] = useState<string[]>([]);
   const [promptModal, setPromptModal] = useState(false);
   const [promptResponseLoading, setPromptResponseLoading] = useState(true);
   const [commentSubmitted, setCommentSubmitted] = useState(false);
-  const [comments, setComments] = useState([
-    'This is a comment',
-    'This is another comment',
-  ]);
   const [newComment, setNewComment] = useState('');
   const [promptResponse, setPromptResponse] = useState<string>();
   const [error, setError] = useState(false);
-  const handleCommentChange = (e) => {
+  const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNewComment(e.target.value);
   };
 
-  const handleSubmitComment = () => {
+  const handleSubmitComment = async () => {
     if (commentSubmitted) {
       return;
     }
     if (newComment.trim() !== '') {
       //make api call
+      await publicRequest
+        .patch(`/user/update-comment/${_id}`, {
+          comment: newComment.trim(),
+          rate: currentRate.rating,
+        })
+        .then((res) => {
+          setComments(res.data.comments);
+          setRating(res.data.rating);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       setCommentSubmitted(true);
-      setComments([newComment, ...comments]);
       setNewComment('');
     }
   };
@@ -65,7 +76,6 @@ const PromptTop = (props: any) => {
     title,
     description,
     ratecount,
-    rating,
     prompt,
     author,
     inputParams,
@@ -75,6 +85,22 @@ const PromptTop = (props: any) => {
     ratingList,
   } = props.prompt;
 
+  const [comments, setComments] = useState([]);
+  const [rating, setRating] = useState(0);
+  React.useEffect(() => {
+    // This effect runs whenever props.prompt?.comments changes
+    setRating(props.prompt?.rating);
+  }, [props.prompt?.rating]);
+  React.useEffect(() => {
+    // This effect runs whenever props.prompt?.comments changes
+    setComments(props.prompt?.comments);
+  }, [props.prompt?.comments]);
+
+  React.useEffect(() => {
+    if (ratingList?.includes(cookies.deviceId)) {
+      setCommentSubmitted(true);
+    }
+  }, [ratingList]);
   const [inputParamSet, setInputParamSet] = useState([]);
   if (!prompt) return null;
   const regex = /{([^}]+)}/g;
@@ -125,7 +151,6 @@ const PromptTop = (props: any) => {
       return false;
     }
   };
-  console.log(promptResponse);
   function formatCodeBlocksAndText(text?: string) {
     if (!text) return;
     // Define a regular expression to match code blocks
@@ -288,9 +313,17 @@ const PromptTop = (props: any) => {
                 </LinkTo>
               </div>
               <div className='flex items-start sm:items-center ml-10'>
-                <StarIcon className='text-yellow-500' />
                 <span className='text-[15px] leading-6 text-slate-700 mt-1'>
-                  {rating} ({ratecount})
+                  {[...Array(rating)].map((each: any, i) => {
+                    return (
+                      <StarIcon
+                        className='text-yellow-500'
+                        fontSize='small'
+                        key={i}
+                      />
+                    );
+                  })}{' '}
+                  ({ratecount})
                 </span>
               </div>
             </div>
@@ -352,46 +385,59 @@ const PromptTop = (props: any) => {
           </p>
         </div>
       ) : getAllTouched() ? (
-        <div className='max-w-lg mt-4 ml-4'>
-          <p className='text-[20px] text-grey-500 mb-1'>Rate this Prompt</p>
-          <Rating
-            size='large'
-            name='size-large'
-            defaultValue={0}
-            value={currentRate.id === _id ? currentRate.rating : 0}
-            onChange={(event, newValue) => {
-              handleRate(newValue);
-            }}
-            readOnly={currentRate.rating !== 0 && currentRate.id === _id}
-          />
-          <div className='mt-4'>
-            <TextareaAutosize
-              className='px-4  mb-2 py-2 text-sm leading-tight text-gray-700  shadow appearance-none focus:outline-none focus:shadow-outline w-full border border-gray-300 rounded-md'
-              placeholder='Add a comment...'
-              value={newComment}
-              onChange={handleCommentChange}
-              minRows={3}
+        !commentSubmitted ? (
+          <div className='max-w-lg mt-4 ml-4'>
+            <p className='text-[20px] text-grey-500 mb-1'>Rate this Prompt</p>
+            <Rating
+              size='large'
+              name='size-large'
+              defaultValue={0}
+              value={currentRate.id === _id ? currentRate.rating : 0}
+              onChange={(event, newValue) => {
+                handleRate(newValue);
+              }}
+              readOnly={currentRate.rating !== 0 && currentRate.id === _id}
             />
-          </div>
+            <div className='mt-4'>
+              <TextareaAutosize
+                className='px-4  mb-2 py-2 text-sm leading-tight text-gray-700  shadow appearance-none focus:outline-none focus:shadow-outline w-full border border-gray-300 rounded-md'
+                placeholder='Add a comment...'
+                value={newComment}
+                onChange={handleCommentChange}
+                minRows={3}
+              />
+            </div>
 
-          <div className='mt-2'>
-            <button
-              className='px-4 w-full sm:w-1/2 mt-3 py-2 text-sm leading-tight text-wh border rounded shadow appearance-none focus:outline-none focus:shadow-outline bg-orange-500'
-              onClick={handleSubmitComment}
-            >
-              Post Comment
-            </button>
+            <div className='mt-2'>
+              <button
+                className='px-4 w-full sm:w-1/2 mt-3 py-2 text-sm leading-tight text-wh border rounded shadow appearance-none focus:outline-none focus:shadow-outline bg-orange-500'
+                onClick={handleSubmitComment}
+              >
+                Post Comment
+              </button>
+            </div>
           </div>
-        </div>
+        ) : null
       ) : null}
       <div className='max-w-lg p-4'>
         <br />
         <h2 className='text-2xl font-semibold mb-4'>Comments</h2>
 
         <div className='space-y-4'>
-          {comments.map((comment, index) => (
+          {comments?.map((comment: any, index: number) => (
             <div key={index} className='bg-white p-4 rounded-lg w-full'>
-              {comment}
+              <div className='flex justify-end'>
+                {[...Array(comment.rate)].map((each: any, i) => {
+                  return (
+                    <StarIcon
+                      className='text-yellow-500'
+                      fontSize='small'
+                      key={i}
+                    />
+                  );
+                })}
+              </div>
+              <div>{comment.comment}</div>
             </div>
           ))}
         </div>
